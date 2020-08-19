@@ -4,6 +4,7 @@
   "description": "parent UI",
   "author": "qupeng <qupeng@vipkid.com.com>",
   "private": true,
+  "main": "./lib/index.js",
   "scripts": {
     "start": "npm run dev",
     "dev": "webpack-dev-server --hot --inline --progress --config bin/webpack.dev.conf.js",

@@ -1,6 +1,8 @@
 <template>
 <div>
-  <router-link v-for="(item, idx) in list" :key="idx" :to="item.path">{{item.name}}</router-link>
+  <div v-for="item in list" :key="item.name">
+    <router-link :to="item.path">{{item.name}}</router-link>
+  </div>
 </div>
 </template>
 <script>

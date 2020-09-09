@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import 'normalize.css'
 import UI from '../src/index'
 import App from './App'
 import pageList from './pageList.vue'

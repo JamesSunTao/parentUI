@@ -1,7 +1,9 @@
 import fadeupMenu from '@/components/fadeup-menu'
+import headerbar from '@/components/headerbar'
 
 const components = {
-  fadeupMenu
+  fadeupMenu,
+  headerbar
 }
 
 const install = function (Vue) {

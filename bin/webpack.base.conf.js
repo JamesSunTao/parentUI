@@ -13,8 +13,16 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.styl(us)?$/,
+        use: [
+          'vue-style-loader',
+          'css-loader',
+          'postcss-loader',
+          'stylus-loader'
+        ]
+      },
+      {
         test: /\.css$/,
-        exclude: /node_modules/,
         use: [
           'vue-style-loader',
           'css-loader',
@@ -43,6 +51,7 @@ module.exports = {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
         options: {
+          esModule: false,
           limit: 10000,
           name: 'static/img/[name].[hash:7].[ext]'
         }
@@ -51,6 +60,7 @@ module.exports = {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
         loader: 'url-loader',
         options: {
+          esModule: false,
           limit: 10000,
           name: 'static/media/[name].[hash:7].[ext]'
         }
@@ -59,6 +69,7 @@ module.exports = {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url-loader',
         options: {
+          esModule: false,
           limit: 10000,
           name: 'static/fonts/[name].[hash:7].[ext]'
         }

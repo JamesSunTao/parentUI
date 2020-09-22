@@ -1,6 +1,6 @@
 {
   "name": "parent-ui",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "parent UI",
   "author": "qupeng <qupeng@vipkid.com.com>",
   "private": true,
@@ -11,7 +11,7 @@
     "build": "node bin/build.js"
   },
   "dependencies": {
-    "vk-hybrid": "http://registry.vnpm.vipkid.com.cn/vk-hybrid/download/vk-hybrid-3.0.23.tgz"
+    "vk-hybrid": "http://registry.vnpm.vipkid.com.cn/vk-hybrid/download/vk-hybrid-3.0.24.tgz"
   },
   "devDependencies": {
     "@babel/core": "^7.11.1",

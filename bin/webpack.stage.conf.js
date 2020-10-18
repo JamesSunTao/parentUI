@@ -19,7 +19,7 @@ module.exports = merge(baseWebpackConfig, {
   },
   output: {
     path: path.join(__dirname, '../output'),
-    filename: '[name].js',
+    filename: '[name]/[hash].js',
     publicPath: '/'
   },
   devtool: 'eval-cheap-module-source-map',

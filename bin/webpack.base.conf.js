@@ -73,6 +73,18 @@ module.exports = {
           limit: 10000,
           name: 'static/fonts/[name].[hash:7].[ext]'
         }
+      },
+      {
+        test: /\.pug$/,
+        oneOf: [
+          {
+            resourceQuery: /^\?vue/,
+            use: ['pug-plain-loader']
+          },
+          {
+            use: [ 'html-loader', 'pug-html-loader']
+          }
+        ]
       }
     ]
   },

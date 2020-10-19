@@ -1,0 +1,27 @@
+# stages中定义整个gitlab-ci的所有场景；
+stages:
+  - inspection   # UT
+  
+preview:     # UT
+  stage: inspection  # 所属gitlab-ci场景
+  image: docker/vue-jest:v2
+  script:    # 执行 UT
+    - cp -r /root/node_modules ./
+    - npm test
+  only:
+    - branches
+  except:
+    - master      # 除master外的所有特性分支执行
+  tags:
+    - ci
+     
+analyze:    # UT
+  stage: inspection
+  image: docker/vue-jest:v2
+  script:    # 执行 UT
+    - cp -r /root/node_modules ./
+    - npm test
+  only:
+    - master      # 只有master分支执行
+  tags:
+    - ci

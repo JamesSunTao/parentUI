@@ -6,9 +6,12 @@
   "private": true,
   "main": "./lib/index.js",
   "scripts": {
+    "clean": "rm -rf ./dist && rm -rf ./output",
     "start": "npm run dev",
     "dev": "webpack-dev-server --hot --inline --progress --config bin/webpack.dev.conf.js",
-    "build": "node bin/build.js"
+    "build": "node bin/build.js",
+    "build:stage": "npm run clean && webpack --config bin/webpack.stage.conf.js --env=test",
+    "init:install": "npm install --registry=http://registry.vnpm.vipkid.com.cn"
   },
   "dependencies": {
     "vk-hybrid": "http://registry.vnpm.vipkid.com.cn/vk-hybrid/download/vk-hybrid-3.0.25.tgz"

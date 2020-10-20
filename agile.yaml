@@ -1,0 +1,19 @@
+######################
+# 测试环境编译
+######################  
+dev:
+  env:
+    node: '/usr/local/node/node-v10.16.0/bin/node'
+    npm: '/usr/local/node/node-v10.16.0/bin/npm'
+  command:
+    - 'npm run init:install'
+    - 'npm run build:stage'
+
+    # 配置中心的配置
+  deploy: # 代码部署
+    intend:  # 测试目标机器上执行命令
+      - 'mkdir -p /opt/vipkid/vfe/parent/parent-ui/'
+    output: './output' # 编译完成后要发布的目录
+    path: '/opt/vipkid/vfe/parent/parent-ui/' # 发布到目标机器的目录
+    command: # 发布完成后的操作
+      - 'ls -la /opt/vipkid/vfe/parent/parent-ui/'

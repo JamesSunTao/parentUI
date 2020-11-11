@@ -1,7 +1,7 @@
 export default [
   {
-    path: '/fadeup-menu',
-    name: 'fadeupMenu',
+    path: '/action-sheet',
+    name: 'actionSheet',
     component: resolve => require(['../components/fadeup-menu.vue'], resolve)
   }, {
     path: '/headerbar',

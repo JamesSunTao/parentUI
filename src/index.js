@@ -4,11 +4,14 @@ import headerbar from '@/components/headerbar'
 import dialog from '@/components/dialog'
 import toast from '@/components/toast'
 import actionSheet from '@/components/actionSheet'
+import shortVideoContainer from '@/components/short-video-container'
+
 
 const components = {
   fadeupMenu,
   headerbar,
-  actionSheet
+  actionSheet,
+  shortVideoContainer,
 }
 
 const prototypes = {

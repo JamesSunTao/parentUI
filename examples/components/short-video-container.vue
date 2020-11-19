@@ -30,6 +30,7 @@ export default {
   methods: {
     open(targe, type){
       if (targe == 'custom') {
+        // 暂时跳转V小圈
         window.location.href = "http://mobile.vipkid.com.cn/parentsspeedy/extend/studyshow/mainpage/?vid=120"
       } else {
         this.top = 0;

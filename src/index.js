@@ -1,13 +1,9 @@
 import button from '@/components/button'
 import fadeupMenu from '@/components/fadeup-menu'
 import headerbar from '@/components/headerbar'
-<<<<<<< HEAD
 import dialog from '@/components/dialog'
 import toast from '@/components/toast'
 
-=======
-import Switch from '@/components/switch'
->>>>>>> switch
 const components = {
   fadeupMenu,
   headerbar,

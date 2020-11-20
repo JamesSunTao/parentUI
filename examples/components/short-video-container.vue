@@ -6,7 +6,7 @@
       <div class="content" @click="open('common')">一般用法</div>
       <div class="content" @click="open('blur', '1')">支持拖拽进度条</div>
       <!-- <div class="content" @click="open('blur')">背景高斯模糊</div> -->
-      <div class="content" @click="open('custom')">自定义模块</div>
+      <!-- <div class="content" @click="open('custom')">自定义模块</div> -->
     </div>
   <div class="flex" :style="{'top': top}">
     <router-view/>

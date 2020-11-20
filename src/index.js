@@ -3,10 +3,11 @@ import fadeupMenu from '@/components/fadeup-menu'
 import headerbar from '@/components/headerbar'
 import dialog from '@/components/dialog'
 import toast from '@/components/toast'
-
+import vswitch from '@/components/switch'
 const components = {
   fadeupMenu,
-  headerbar
+  headerbar,
+  vswitch
 }
 
 const prototypes = {

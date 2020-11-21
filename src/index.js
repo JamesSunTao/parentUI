@@ -7,7 +7,6 @@ import toast from '@/components/toast'
 const components = {
   fadeupMenu,
   headerbar,
-  Switch
 }
 
 const prototypes = {

@@ -3,10 +3,11 @@ import fadeupMenu from '@/components/fadeup-menu'
 import headerbar from '@/components/headerbar'
 import dialog from '@/components/dialog'
 import toast from '@/components/toast'
-
+import checkbox from '@/components/checkbox'
 const components = {
   fadeupMenu,
   headerbar,
+  checkbox
 }
 
 const prototypes = {

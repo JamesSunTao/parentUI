@@ -1,6 +1,6 @@
 <template>
   <div
-    class="vswitch-wrap"
+    class="ui-switch_wrap"
     :class="{ is_check: checked }"
     @click.prevent="switchValue"
     :style="{ width: coreWidth + 'px' }"
@@ -8,11 +8,11 @@
   >
     <input
       type="checkbox"
-      class="vswitch__input"
+      class="ui-switch__input"
       @change="handleChange"
       ref="input"
     />
-    <div class="vswitch-item" ref="item"></div>
+    <div class="ui-switch_item" ref="item"></div>
   </div>
 </template>
 
@@ -124,7 +124,7 @@ export default {
 </script>
 
 <style  lang='stylus' scoped>
-.vswitch-wrap
+.ui-switch_wrap
   width: 51px;
   height: 31px;
   border-radius: 15px;
@@ -134,13 +134,13 @@ export default {
   background-color: #e1e1e1;
   position: relative;
   transition: border-color 0.3s, background-color 0.3s;
-  .vswitch__input 
+  .ui-switch__input 
     position: absolute;
     width: 0;
     height: 0;
     opacity: 0;
     margin: 0;
-  .vswitch-item 
+  .ui-switch_item 
     position: absolute;
     top: 1px;
     left: 1px;
@@ -151,7 +151,7 @@ export default {
     border-radius: 50%;
   &.is_check 
     background-color: #ff592c;
-    .vswitch-item 
+    .ui-switch_item 
       left: 100%;
       margin-left: -30px;
 </style>

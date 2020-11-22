@@ -47,19 +47,19 @@ export default {
   computed: {
     model: {
       get() {
-        return this.value;
+        return this.value
       },
       set(val) {
-        this.$emit("input", val);
+        this.$emit("input", val)
       },
     },
     isChecked() {
       if ({}.toString.call(this.model) === "[object Boolean]") {
         return this.model;
       } else if (Array.isArray(this.model)) {
-        return this.model.indexOf(this.label) > -1;
+        return this.model.indexOf(this.label) > -1
       } else if (this.model !== null && this.model !== undefined) {
-        return this.model === this.trueLabel;
+        return this.model === this.trueLabel
       }
     },
     isDisabled() {

@@ -46,6 +46,7 @@ function looseBody() {
   var body = document.body
   var top = body.style.top
   body.style.position = ''
+  body.style.width = ''
   // eslint-disable-next-line no-multi-assign
   document.body.scrollTop = document.documentElement.scrollTop = -parseInt(top)
   body.style.top = ''

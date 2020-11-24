@@ -1,5 +1,5 @@
 <template lang="pug">
-.ui-dialog(v-show="iShow" v-scrollFixed)
+.ui-dialog(v-if="iShow" v-scrollFixed)
   transition(name="ui-dialog")
     .ui-dialog__wrap(v-cloak)(:class="{'ui-dialog__icon-type': iconClass || type}")
       .ui-dialog__wrap__info.ui-bottom-line(:class="{'ui-dialog__hidden-button': hiddenButton}")

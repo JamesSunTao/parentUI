@@ -12,5 +12,9 @@ export default [
     path: '/checkbox',
     name: 'checkbox',
     component: resolve => require(['../components/checkbox.vue'], resolve)
+  },{
+    path: '/vswitch',
+    name: 'vswitch',
+    component: resolve => require(['../components/vswitch.vue'], resolve),
   }
 ]

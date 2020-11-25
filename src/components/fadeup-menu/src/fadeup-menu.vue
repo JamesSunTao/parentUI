@@ -72,6 +72,8 @@ export default {
 .menu {
   position: absolute;
   bottom: 0;
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
   width: 100%;
   font-size: 18px;
   line-height: 50px;

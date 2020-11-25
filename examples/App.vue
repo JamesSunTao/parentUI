@@ -18,5 +18,7 @@ export default {
   text-align: center;
   color: #2c3e50;
   touch-action: none;
+  height: 100vh;
+  background: #F7F8FA;
 }
 </style>

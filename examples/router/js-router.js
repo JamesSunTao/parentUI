@@ -6,7 +6,12 @@ export default [
   }, {
     path: '/dialog',
     name: 'dialog',
-    component: resolve => require(['../components/dialog.vue'], resolve),
+    component: resolve => require(['../components/dialog.vue'], resolve)
+  },
+  {
+    path: '/checkbox',
+    name: 'checkbox',
+    component: resolve => require(['../components/checkbox.vue'], resolve)
   },{
     path: '/vswitch',
     name: 'vswitch',

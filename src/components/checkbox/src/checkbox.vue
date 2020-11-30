@@ -6,6 +6,7 @@
         v-if="trueLabel || falseLabel"
         :true-value="trueLabel"
         :false-value="falseLabel"
+        :value="label"
         :name="name"
         type="checkbox"
         class="ui-checkbox__original"
@@ -31,8 +32,10 @@
   </label>
 </template>
 <script>
+import Emitter from '../../../mixins/emitter.js';
 export default {
   name: "checkbox",
+  mixins: [Emitter],
   props: {
     value: {},
     label: {},
@@ -44,15 +47,44 @@ export default {
     size: String,
     activeColor: String
   },
+  data() {
+    return {
+      selfModel: false,
+    }
+  },
+  created() {
+    this.checked && this.addToStore()
+  },
   computed: {
     model: {
       get() {
-        return this.value
+        return this.isGroup
+            ? this.store : this.value !== undefined
+              ? this.value : this.selfModel;
       },
       set(val) {
+        if(this.isGroup) {
+           this.dispatch('UiCheckboxGroup', 'input', [val]);
+        }
         this.$emit("input", val)
+        this.selfModel = val;
       },
     },
+    isGroup() {
+        let parent = this.$parent;
+        while (parent) {
+          if (parent.$options.componentName !== 'UiCheckboxGroup') {
+            parent = parent.$parent
+          } else {
+            this._checkboxGroup = parent
+            return true;
+          }
+        }
+        return false;
+      },
+    store() {
+        return this._checkboxGroup ? this._checkboxGroup.value : this.value;
+      },
     isChecked() {
       if ({}.toString.call(this.model) === "[object Boolean]") {
         return this.model;
@@ -63,10 +95,10 @@ export default {
       }
     },
     isDisabled() {
-      return this.disabled
+      return this.isGroup ? this._checkboxGroup.disabled || this.disabled : this.disabled
     },
     isSmall() {
-      return this.size === 'small'
+      return this.isGroup ? this._checkboxGroup.checkboxGroupSize :this.size === 'small'
     }
   },
   mounted() {
@@ -88,6 +120,13 @@ export default {
    }
   },
   methods: {
+    addToStore() {
+      if (Array.isArray(this.model) && this.model.indexOf(this.label) === -1) {
+          this.model.push(this.label)
+        } else {
+          this.model = this.trueLabel || true
+        }
+    },
     handleChange(ev) {
       let value
       if (ev.target.checked) {
@@ -96,6 +135,11 @@ export default {
           value = this.falseLabel === undefined ? false : this.falseLabel
         }
        this.$emit('change', value, ev)
+        this.$nextTick(() => {
+          if (this.isGroup) {
+            this.dispatch('UiCheckboxGroup', 'change', [this._checkboxGroup.value]);
+          }
+        });
     },
   },
 }

@@ -17,4 +17,9 @@ export default [
     name: 'vswitch',
     component: resolve => require(['../components/vswitch.vue'], resolve),
   }
+  ,{
+    path: '/notify',
+    name: 'notify',
+    component: resolve => require(['../components/notify.vue'], resolve),
+  }
 ]

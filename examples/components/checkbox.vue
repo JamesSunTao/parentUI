@@ -31,14 +31,6 @@
         <div class="info">插槽功能</div>
         <checkbox v-model="value8" true-label="我被激活啦" active-color="red" size="small">我是checkbox组件，我有插槽功能</checkbox>
       </div>
-      <div class="content-item">
-        <div class="info">支持复选框（checkbox-group）</div>
-        <checkbox-group size="small" v-model="array">
-          <checkbox @change="fn" true-label="3" label="复选选框A"></checkbox>
-          <checkbox true-label="3" label="复选选框B"></checkbox>
-          <checkbox label="复选选框C"></checkbox>
-        </checkbox-group>
-      </div>
     </div>
   </div>
 </template>

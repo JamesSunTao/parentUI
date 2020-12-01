@@ -59,40 +59,40 @@ export default {
   data() {
     return {
       coreWidth: this.width,
-    };
+    } 
   },
   created() {
     if (!~[this.activeValue, this.inactiveValue].indexOf(this.value)) {
-      this.$emit("input", this.inactiveValue);
+      this.$emit("input", this.inactiveValue)
     }
   },
   computed: {
     checked() {
-      return this.value === this.activeValue;
+      return this.value === this.activeValue
     },
     switchDisabled() {
-      return this.disabled;
+      return this.disabled
     },
   },
   watch: {
     checked() {
-      this.$refs.input.checked = this.checked;
+      this.$refs.input.checked = this.checked
       if (this.activeColor || this.inactiveColor) {
-        this.setBackgroundColor();
+        this.setBackgroundColor()
       }
     },
   },
   methods: {
     handleChange(event) {
-      const val = this.checked ? this.inactiveValue : this.activeValue;
-      this.$emit("input", val);
-      this.$emit("change", val);
+      const val = this.checked ? this.inactiveValue : this.activeValue
+      this.$emit("input", val)
+      this.$emit("change", val)
       this.$nextTick(() => {
-        this.$refs.input.checked = this.checked;
-      });
+        this.$refs.input.checked = this.checked
+      }) 
     },
     switchValue() {
-      !this.switchDisabled && this.handleChange();
+      !this.switchDisabled && this.handleChange()
     },
     setBackgroundColor() {
       let newactiveColor = typeof this.activeColor == 'string' ? [this.activeColor] : this.activeColor
@@ -114,44 +114,45 @@ export default {
     }
   },
   mounted() {
-    this.coreWidth = this.width || 51;
+    this.coreWidth = this.width || 51 
     if (this.activeColor || this.inactiveColor) {
-      this.setBackgroundColor();
+      this.setBackgroundColor() 
     }
-    this.$refs.input.checked = this.checked;
+    this.$refs.input.checked = this.checked 
   },
-};
+} 
 </script>
 
 <style  lang='stylus' scoped>
+@import '../../../style/var.styl'
 .ui-switch_wrap
-  width: 51px;
-  height: 31px;
-  border-radius: 15px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  background-color: #e1e1e1;
-  position: relative;
-  transition: border-color 0.3s, background-color 0.3s;
-  .ui-switch__input 
-    position: absolute;
-    width: 0;
-    height: 0;
-    opacity: 0;
-    margin: 0;
+  width: $vk-switch-width
+  height: $vk-switch-height
+  border-radius: $vk-radius-base * 4
+  display: flex
+  justify-content: flex-start
+  align-items: center
+  background-color: #e1e1e1
+  position: relative 
+  transition: border-color 0.3s, background-color 0.3s
+  .ui-switch__input
+    position: absolute
+    width: 0
+    height: 0
+    opacity: 0 
+    margin: 0
   .ui-switch_item 
-    position: absolute;
-    top: 1px;
-    left: 1px;
-    transition: 0.3s;
-    background-color: white;
-    width: 29px;
-    height: 29px;
-    border-radius: 50%;
-  &.is_check 
-    background-color: #ff592c;
-    .ui-switch_item 
-      left: 100%;
-      margin-left: -30px;
+    position: absolute
+    top: 1px
+    left: 1px
+    transition: 0.3s
+    background-color: $vk-bgc-white
+    width: $vk-switch_item-width
+    height: $vk-switch_item-height
+    border-radius: 50%
+  &.is_check
+    background-color: $vk-main-color
+    .ui-switch_item
+      left: 100%
+      margin-left: -30px
 </style>

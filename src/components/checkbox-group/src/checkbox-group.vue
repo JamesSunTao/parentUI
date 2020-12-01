@@ -1,5 +1,5 @@
 <template>
-  <div class="ui-checkbox-group" role="group" aria-label="checkbox-group">
+  <div class="ui-checkbox-group" role="group" aria-label="checkbox-group" :class="{[position]:isCol}">
     <slot></slot>
   </div>
 </template>
@@ -10,16 +10,27 @@ export default {
   props: {
     value: {},
     disabled: Boolean,
-    size:{}
+    size:{},
+    position:{
+      type: String,
+      validator: function(value) {
+        return ['column','row'].indexOf(value) > -1
+      }
+    }
   },
   computed: {
     checkboxGroupSize() {
       return this.size == 'small'
+    },
+    isCol() {
+      return this.position == 'column'
     }
   },
 }
 </script>
-
-<style>
-
+<style lang="stylus" scoped>
+.ui-checkbox-group
+ &.column
+  display: flex
+  flex-direction: column
 </style>

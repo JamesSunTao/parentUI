@@ -14,7 +14,7 @@ export default {
       text: '',
       timeout: 2000,
       type: '', // success fail warinig loading
-      textLeft: false
+      textLeft: false,
     }
   },
   mounted() {

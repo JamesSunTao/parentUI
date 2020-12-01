@@ -8,6 +8,7 @@ import checkboxGroup from '@/components/checkbox-group'
 import actionSheet from '@/components/actionSheet'
 import shortVideoContainer from '@/components/short-video-container'
 import vswitch from '@/components/switch'
+import notify from '@/components/notify'
 const components = {
   fadeupMenu,
   headerbar,
@@ -15,7 +16,8 @@ const components = {
   shortVideoContainer,
   vswitch,
   checkbox,
-  checkboxGroup
+  checkboxGroup,
+  notify
 }
 const prototypes = {
   dialog,

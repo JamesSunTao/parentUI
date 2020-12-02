@@ -9,6 +9,8 @@ import actionSheet from '@/components/actionSheet'
 import shortVideoContainer from '@/components/short-video-container'
 import vswitch from '@/components/switch'
 import notify from '@/components/notify'
+import popover from '@/components/popover'
+
 const components = {
   fadeupMenu,
   headerbar,
@@ -17,7 +19,8 @@ const components = {
   vswitch,
   checkbox,
   checkboxGroup,
-  notify
+  notify,
+  popover
 }
 const prototypes = {
   dialog,

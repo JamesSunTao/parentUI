@@ -11,6 +11,7 @@ import vswitch from '@/components/switch'
 import notify from '@/components/notify'
 import popover from '@/components/popover'
 
+import tabs from '@/components/tabs'
 const components = {
   fadeupMenu,
   headerbar,
@@ -20,7 +21,8 @@ const components = {
   checkbox,
   checkboxGroup,
   notify,
-  popover
+  popover,
+  tabs
 }
 const prototypes = {
   dialog,

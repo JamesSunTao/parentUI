@@ -11,5 +11,9 @@ export default [
     path: '/picker',
     name: 'picker',
     component: resolve => require(['../components/picker.vue'], resolve)
+  },{
+    path: '/notify',
+    name: 'notify',
+    component: resolve => require(['../components/notify.vue'], resolve),
   }
 ]

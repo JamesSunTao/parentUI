@@ -12,7 +12,7 @@
       </div>
       <div class="content-item">
         <div class="info">自定义文字说明</div>
-        <checkbox v-model="value4" true-label="3" label="中国人民万岁" active-color="red"></checkbox>
+        <checkbox v-model="value4" true-label="3" label="中国人民万岁"></checkbox>
       </div>
       <div class="content-item">
         <div class="info">不可点击态</div>
@@ -25,19 +25,11 @@
       </div>
       <div class="content-item">
         <div class="info">可添加change事件</div>
-        <checkbox v-model="value7" true-label="我被激活啦" active-color="red" size="small" @change="fn"></checkbox>
+        <checkbox v-model="value7" true-label="我被激活啦" size="small" @change="fn"></checkbox>
       </div>
       <div class="content-item">
         <div class="info">插槽功能</div>
-        <checkbox v-model="value8" true-label="我被激活啦" active-color="red" size="small">我是checkbox组件，我有插槽功能</checkbox>
-      </div>
-      <div class="content-item">
-        <div class="info">支持复选框（checkbox-group）</div>
-        <checkbox-group size="small" v-model="array">
-          <checkbox @change="fn" true-label="3" label="复选选框A"></checkbox>
-          <checkbox true-label="3" label="复选选框B"></checkbox>
-          <checkbox label="复选选框C"></checkbox>
-        </checkbox-group>
+        <checkbox v-model="value8" true-label="我被激活啦"  size="small">我是checkbox组件，我有插槽功能</checkbox>
       </div>
     </div>
   </div>

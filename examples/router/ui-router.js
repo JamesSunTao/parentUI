@@ -33,6 +33,20 @@ export default [
         path: '/blur',
         name: 'blur',
         component: resolve => require(['../view/short-video/blur.vue'], resolve)
-    }]
+    }],
+  },
+  {
+    path: '/checkbox',
+    name: 'checkbox',
+    component: resolve => require(['../components/checkbox.vue'], resolve)
+  },{
+    path: '/vswitch',
+    name: 'vswitch',
+    component: resolve => require(['../components/vswitch.vue'], resolve),
+  },
+  {
+    path: '/checkboxGroup',
+    name: 'checkbox-group',
+    component: resolve => require(['../components/checkbox-group.vue'], resolve),
   }
 ]

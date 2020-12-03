@@ -9,6 +9,7 @@ import actionSheet from '@/components/actionSheet'
 import shortVideoContainer from '@/components/short-video-container'
 import vswitch from '@/components/switch'
 import notify from '@/components/notify'
+import picker from '@/components/picker'
 import popover from '@/components/popover'
 
 import tabs from '@/components/tabs'
@@ -27,6 +28,7 @@ const components = {
 const prototypes = {
   dialog,
   toast,
+  picker
 }
 
 const install = function (Vue) {

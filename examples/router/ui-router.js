@@ -8,6 +8,10 @@ export default [
     name: 'headerbar',
     component: resolve => require(['../components/headerbar.vue'], resolve)
   }, {
+    path: '/notify',
+    name: 'notify',
+    component: resolve => require(['../components/notify.vue'], resolve),
+  }, {
     path: '/shortVideoContainer',
     name: 'shortVideoContainer',
     component: resolve => require(['../components/short-video-container.vue'], resolve),

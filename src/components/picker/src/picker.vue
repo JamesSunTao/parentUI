@@ -1,23 +1,30 @@
 <template>
 <transition name="picker">
   <div class="vk-picker-cover" v-if="iShow">
-    <div class="vk-picker-mask" @touchmove.prevent="stopScroll" @click.stop="close"></div>
+    <div class="vk-picker-mask" @touchmove.prevent="stopScroll" @click.stop="closePicker"></div>
     <div class="vk-picker-menu" style="height: 272px">
       <div class="vk-picker-menu-li vk-picker-title">
-        <div class="vk-picker-title-item vk-picker-title-cancel" @click.stop="close">{{cancel}}</div>
+        <div class="vk-picker-title-item vk-picker-title-cancel" @click.stop="closePicker">{{cancel}}</div>
         <div class="vk-picker-title-item vk-picker-title-vk-picker-title">{{title}}</div>
         <div class="vk-picker-title-item vk-picker-title-confirm" @click.stop="confirmHandle">
           <span>{{confirm}}</span>
         </div>
       </div>
-      <pickerslot 
-        v-for="slot in slots" :key="slot.index"
-        :values="slot.values || []"
-        :valueKey="option.key"
-        :flex="slot.flex"
-        v-model="values[slot.valueIndex]"
-        >
-      </pickerslot>
+      <div class="vk-picker-items">
+        <pickerslot 
+          v-for="slot in slots" :key="slot.index"
+          :values="slot.values || []"
+          :valueKey="option.key"
+          :flex="slot.flex"
+          :text-align="slot.textAlign || 'center'"
+          :class-name="slot.className"
+          v-model="values[slot.valueIndex]"
+          :divider="slot.divider"
+          :content="slot.content"
+          :default-index="slot.defaultIndex"
+          >
+        </pickerslot>
+      </div>
     </div>
   </div>
 </transition>
@@ -25,7 +32,45 @@
 <script>
 import pickerslot from './pickerSlot.vue'
 import { newAddress } from '@parent/parent-jsdk'
+import { throws } from 'assert';
 const COUNTRYLIST = newAddress.data
+
+const typeMapping = {
+  province: [{
+    flex: 1,
+    values: COUNTRYLIST[0].sonAddress,
+    className: 'slot1',
+    textAlign: 'center'
+  }],
+  city: [{
+    flex: 1,
+    values: null,
+    className: 'slot1',
+    textAlign: 'center'
+  }],
+  area: [{
+    flex: 1,
+    values: null,
+    className: 'slot1',
+    textAlign: 'center'
+  }],
+  region: [{
+    flex: 1,
+    values: COUNTRYLIST[0].sonAddress,
+    className: 'slot1',
+    textAlign: 'center'
+  }, {
+    flex: 1,
+    values: COUNTRYLIST[0].sonAddress[0].sonAddress,
+    className: 'slot3',
+    textAlign: 'center'
+  }, {
+    flex: 1,
+    values: COUNTRYLIST[0].sonAddress[0].sonAddress[0].sonAddress,
+    className: 'slot3',
+    textAlign: 'center'
+  }]
+}
 
 export default {
   name: 'picker',
@@ -36,6 +81,8 @@ export default {
       confirm: '',
       confirmFn: null,
       cancel: '',
+      type: '',
+      code: '',
       cancelFn: null,
       option: {
         key: 'name'
@@ -43,16 +90,36 @@ export default {
     }
   },
   created() {
+    if (this.type == 'region') { // 当传入类型为 region 需要省市区联动，监听数据改变，联动
+      this.$on('slotValueChange', this.slotValueChange)
+      this.slotValueChange()
+    }
   },
   computed: {
     slots() {
-      let addressSlots = [{
-        flex: 1,
-        values: COUNTRYLIST[0].sonAddress,
-        className: 'slot1',
-        textAlign: 'center'
-      }]
-      return addressSlots
+      switch (this.type) {
+        case 'city':
+          if (this.code) {
+            let values = COUNTRYLIST[0].sonAddress.find(res => {
+              return res.code == this.code
+            })
+            typeMapping['city'][0].values = values.sonAddress
+          } else {
+            throw new Error('缺少code')
+          }
+          break;
+        case 'area':
+          if (this.code) {
+            let values = this.findDataForCode(typeMapping['city'][0].values)
+            typeMapping['area'][0].values = values.sonAddress
+          } else {
+            throw new Error('缺少code')
+          }
+          break
+        default: 
+          break;
+      }
+      return typeMapping[this.type]
     },
     values: {
       get() {
@@ -70,15 +137,55 @@ export default {
     },
   },
   methods: {
+    findDataForCode(option) {
+      let data = option.find(res => {
+        return res.code == this.code
+      })
+      return data
+    },
+    slotValueChange() {
+      let provinceList = COUNTRYLIST[0].sonAddress
+      if (this.values.length > 0) {
+        let provinceIndex = provinceList.findIndex((item) => {return item.code === this.values[0]['code']})
+        let cityList = provinceList[provinceIndex].sonAddress
+        let cityIndex = cityList.findIndex((item) => {return item.code === this.values[1]['code']})
+        this.setSlotValues(1, cityList)
+        cityList[cityIndex] && this.setSlotValues(2, cityList[cityIndex].sonAddress)
+      }
+    },
+    setSlotValues(index, values) {
+      var slot = this.getSlot(index)
+      if (slot) {
+        slot.mutatingValues = values
+      }
+    },
+    getSlot(slotIndex) {
+      var slots = this.slots || []
+      var count = 0
+      var target
+      let children = this.$children.filter(child => { return child.$options.name === 'picker-slot'})
+
+      slots.forEach(function(slot, index) {
+        if (!slot.divider) {
+          if (slotIndex === count) {
+            target = children[index]
+          }
+          count++
+        }
+      })
+
+      return target
+    },
     stopScroll() {
       event.preventDefault()
     },
-    close() {
+    closePicker() {
       this.$emit('update:isShow', false)
       this.iShow = false
     },
     confirmHandle() {
-      this.confirmFn ? this.confirmFn(this.values) : this.close()
+      this.confirmFn && this.confirmFn(this.values) 
+      this.closePicker()
     }
   },
   components: {
@@ -177,5 +284,23 @@ export default {
     color $vk-picker-cancel-color
     min-width: 40px
   }
+}
+.vk-picker-items{
+    display: -webkit-box
+    display: -moz-box
+    // display: -webkit-flex
+    display: -ms-flexbox
+    display: flex
+    display: box
+    display: -webkit-box
+    display: -webkit-flex
+    display: -moz-box
+    display: -ms-flexbox
+    justify-content: center
+    -webkit-justify-content: center
+    padding: 0
+    text-align: right
+    font-size: 24px
+    position: relative
 }
 </style>

@@ -10,6 +10,8 @@ import shortVideoContainer from '@/components/short-video-container'
 import vswitch from '@/components/switch'
 import notify from '@/components/notify'
 import picker from '@/components/picker'
+import popover from '@/components/popover'
+
 const components = {
   fadeupMenu,
   headerbar,
@@ -18,7 +20,8 @@ const components = {
   vswitch,
   checkbox,
   checkboxGroup,
-  notify
+  notify,
+  popover
 }
 const prototypes = {
   dialog,

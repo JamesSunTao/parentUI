@@ -6,6 +6,7 @@ let instance
 
 let _default = {
   type: '', // 省，市，区，省市区，年月日，年，月，日，时间，自定义
+  code: '',
   title: '',
   confirm: '确定',
   cancel: '取消',

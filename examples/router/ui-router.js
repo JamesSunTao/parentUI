@@ -21,5 +21,9 @@ export default [
         name: 'blur',
         component: resolve => require(['../view/short-video/blur.vue'], resolve)
     }]
+  },{
+    path: '/popover',
+    name: 'popover',
+    component: resolve => require(['../components/popover.vue'], resolve)
   }
 ]

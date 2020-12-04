@@ -7,13 +7,15 @@ import checkbox from '@/components/checkbox'
 import actionSheet from '@/components/actionSheet'
 import shortVideoContainer from '@/components/short-video-container'
 import vswitch from '@/components/switch'
+import popover from '@/components/popover'
 const components = {
   fadeupMenu,
   headerbar,
   actionSheet,
   shortVideoContainer,
   vswitch,
-  checkbox
+  checkbox,
+  popover
 }
 const prototypes = {
   dialog,

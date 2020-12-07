@@ -8,6 +8,7 @@
       <div class="content" @click="chenageArea">选择区</div>
       <div class="content" @click="chenageArea">{{province.name}}-{{city.name}}-{{area.name}}</div>
       <div class="content" @click="changeRegion">省市区联动</div>
+      <div class="content" @click="changeRegion">{{region}}</div>
   </div>
 </template>
 <script>
@@ -16,7 +17,8 @@ export default {
     return {
       province: {},
       city: {},
-      area: {}
+      area: {},
+      region: '',
     }
   },
   created() {
@@ -65,10 +67,7 @@ export default {
         type: 'region',
         col: 5,
         confirmFn: (values) => {
-          this.$dialog({
-            title: '提示',
-            text: `我选择了${values[0].name}-${values[1].name}-${values[2].name}`
-          })
+          this.region = `${values[0].name}-${values[1].name}-${values[2].name}`
         }
       })
     }

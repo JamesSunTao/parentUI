@@ -1,11 +1,13 @@
 <template>
-  <div class="ui-popover" ref="popover" @click="onClick">
-    <div v-if="visiable && !$slots.default" class="content" :class="{[`position-${position_y}`]:true,[`position-${position_x}`]:true}" ref="content">
-        <div>{{label}}</div>
+  <div class="ui-popover" ref="popover" @click="onClick" >
+    <div v-if="visiable && !$slots.default" class="content" :class="{[`position-${position_y}`]:true,[`position-${position_x}`]:true,[type]:true,light:isBgWhite}" ref="content">
+        <div class="label">{{label}}</div>
         <div v-show="closeable" class="close" @click="close"></div>
+        <div class="symbol" ref="symbol"></div>
     </div>
-    <div v-else-if="visiable && $slots.default "  ref="content">
+    <div v-else-if="visiable && $slots.default " style="flex-direction: column" :class="{[`position-${position_y}`]:true,[`position-${position_x}`]:true,light:isBgWhite}" class="content"  ref="content">
         <slot></slot>
+        <div class="symbol" ref="symbol"></div>
     </div>
     <span ref="button">
       <slot name="button"></slot>
@@ -38,6 +40,22 @@ export default {
     label: {
        type: String,
        default: '',
+    },
+    type: {
+      type: String,
+      default: '',
+    },
+    theme: {
+      type: String,
+      default: '',
+    },
+    autoShow: {
+      type: Boolean,
+      default: false,
+    },
+    stopClickDom: {
+      type: Boolean,
+      default: false,
     }
   },
   data() {
@@ -47,9 +65,7 @@ export default {
   },
   computed: {
       isBgWhite() {
-        if(bgWhite) {
-
-        }
+         return this.theme === 'light'
       }
   },
   methods: {
@@ -57,25 +73,39 @@ export default {
        document.body.appendChild(this.$refs.content)
        let { left, top, width, height,right} = this.$refs.button.getBoundingClientRect()
        if(this.position_y == 'top') {
-         console.log(top)
-         this.$refs.content.style.top = top + document.documentElement.scrollTop +'px'
-         this.$refs.content.style.left = left + document.documentElement.scrollLeft  + 'px'
+          if(this.position_x == 'left') {
+            this.$refs.content.style.left = left - left/2 + document.documentElement.scrollLeft  + 'px'
+          }else {
+               let { left:left1, top, width:width1, height,right} = this.$refs.content.getBoundingClientRect()
+               this.$refs.content.style.left = left - width1 + width + document.documentElement.scrollLeft + 10 + 'px'
+          }
+         this.$refs.content.style.top = top  + document.documentElement.scrollTop +'px'
        }else if(this.position_y == 'bottom'){
          if(this.position_x == 'left') {
-            this.$refs.content.style.top = top +  height + document.documentElement.scrollTop + 'px'
-            this.$refs.content.style.marginTop = 6 + 'px'
+            this.$refs.content.style.left = left + document.documentElement.scrollLeft  + 'px'
          }else {
-            this.$refs.content.style.top = top + 2 * height + document.documentElement.scrollTop + 'px'
+            let { left:left1, top, width:width1, height,right} = this.$refs.content.getBoundingClientRect()
+            this.$refs.content.style.left = left - width1 + width + document.documentElement.scrollLeft + 10 + 'px'
          }  
-         this.$refs.content.style.left = left + document.documentElement.scrollLeft  + 'px'
+         this.$refs.content.style.marginTop = 6 + 'px'
+         this.$refs.content.style.top = top + height + document.documentElement.scrollTop + 'px'
+         
        }
+    },
+    initBg() {
+      if (this.position_y == 'top') {
+        this.$refs.symbol.style.borderTopColor = '#F9FAFC'
+      } else if (this.position_y == 'bottom') {
+        this.$refs.symbol.style.borderBottomColor = '#F9FAFC'
+      }
     },
     open() {
       this.visiable = true
       if(this.visiable) {
         this.$nextTick(()=>{
           this.positionContent()
-          document.addEventListener('click',this.onClickDocument)
+          this.isBgWhite && this.initBg()
+          !this.stopClickDom && document.addEventListener('click',this.onClickDocument)
         })
       }
     },
@@ -99,30 +129,35 @@ export default {
     },
     close() {
       this.visiable = false
-      document.removeEventListener('click',this.onClickDocument)
+      !this.stopClickDom && document.removeEventListener('click',this.onClickDocument)
     }
   },
-  mounted() {
-    
+  created() {
+      this.autoShow && this.open()
   }
 };
 </script>
 
 <style  lang='stylus' scoped>
+@import '../../../style/var.styl'
 .ui-popover
   display: inline-block
- .content 
+ .content
+    z-index: 100
     position: absolute
     opacity: 0.8
     background: #000000
     display: flex
     align-items: center
-    color: #fff
-    padding: 9px 10px 9px 12px
+    color: $vk-bgc-white
     box-sizing: border-box
-    border-radius: 17px
-    font-size: 14px
+    border-radius: $vk-radius-base * 4
+    font-size: $vk-font-size-sm
     word-break: break-all
+    max-width: 260px
+    padding: 9px 10px 9px 12px
+  .label
+    margin-right: 5px
   .close
     position: relative
     margin-left: 8px
@@ -146,35 +181,41 @@ export default {
       top: 50%
       left: 0
       height: 1px
-      background-color: white
+      background-color: $vk-bgc-white
       transform: rotate(45deg)
 &.position-top
   transform: translateY(-100% - 10px)
-  &::after
+  .symbol
     bottom: -9px
     left: 16px
-    position: absolute;
-    content: ''
+    position: absolute
     display: block
     border: 5px solid black
     border-left-color: transparent
     border-right-color: transparent
     border-bottom-color: transparent
 &.position-bottom
-  margin-top: 16px
-  &::after
+  .symbol
     top: -9px
     left: 16px
     position: absolute;
     border: 3px solid transparent
-    content: ''
     display: block
     border: 5px solid black
     border-left-color: transparent
     border-right-color: transparent
     border-top-color: transparent
 &.position-right
-  transform: translate(-50%,-100% - 10px)
-  &::after
+  .symbol
     left: calc(100% - 26px)
+&.multi
+  .close
+    position: absolute
+    top: 5px
+    right: 9px
+    margin-left: 5px
+&.light
+  color: #2f3338
+  background: $vk-bgc-white
+  box-shadow: 0px 2px 20px 0px rgba(0,0,0,0.1)
 </style>

@@ -7,13 +7,18 @@ import checkbox from '@/components/checkbox'
 import actionSheet from '@/components/actionSheet'
 import shortVideoContainer from '@/components/short-video-container'
 import vswitch from '@/components/switch'
+
+
+// 报告类组件
+import reportHeadImage from '@/components/reportComponents/report/report-head-image'
 const components = {
   fadeupMenu,
   headerbar,
   actionSheet,
   shortVideoContainer,
   vswitch,
-  checkbox
+  checkbox,
+  reportHeadImage
 }
 const prototypes = {
   dialog,

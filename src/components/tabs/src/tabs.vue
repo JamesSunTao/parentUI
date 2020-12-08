@@ -1,7 +1,9 @@
 <template>
-  <div :class="[scrollspy || tabsData.length > 4 ? 'scroll-spy':'' ,tapsType]">
-    <div class="vk-tab" :class="[index == curIndex?'active':'']" v-for="(item, index)  in tabsData" @click.stop="clickTab(index)" :key="index">
-      <span>{{item.tabName}}</span>
+  <div class="tabs-warp">
+    <div :class="[scrollspy ? 'scroll-spy':'' ,tapsType]">
+      <div class="vk-tab" :class="[index == curIndex?'active':'']" v-for="(item, index)  in tabsData" @click.stop="clickTab(index)" :key="index">
+        <span>{{item.tabName}}</span>
+      </div>
     </div>
   </div>
 </template>
@@ -29,8 +31,7 @@ export default {
   data() {
     return {
       curIndex: 0,
-      tabsType: 'card',
-      
+      tabsType: '',
     }
   },
   created() {
@@ -46,36 +47,32 @@ export default {
 }
 </script>
 <style lang='stylus' scoped>
+@import '../../../style/var.styl'
   .vk-tabs-
     display: flex
     flex-wrap: nowrap
     justify-content: center
-    background: #fff
+    background: $vk-bgc-while-pure
     overflow-x: auto
     box-sizing: border-box
-    scrollbar-width: none; /* firefox */
-    -ms-overflow-style: none; /* IE 10+ */
+    scrollbar-width: none
+    -ms-overflow-style: none
     &::-webkit-scrollbar {
-      display: none; /* Chrome Safari */
+      display: none
     }
     .vk-tab
       position: relative
       text-align: center
       height: 44px
       box-sizing: border-box
-      padding: 11px 0
-      margin-left: 36px
+      padding: 11px 16px
       span
         display: inline-block
         font-size: 16px
-        color: #747D87
+        color: $vk-font-color-text
         overflow: hidden
         white-space: nowrap
         text-overflow: ellipsis
-      &:first-child
-        margin-left: 16px
-      &:last-child
-        margin-right: 16px  
     .active
       span
         font-weight: 500
@@ -93,45 +90,40 @@ export default {
       display: flex
       flex-wrap: nowrap
       justify-content: center
-      background: #fff
+      background: $vk-bgc-while-pure
       overflow-x: auto
       box-sizing: border-box
       padding: 8px 0
-      scrollbar-width: none; /* firefox */
-      -ms-overflow-style: none; /* IE 10+ */
+      scrollbar-width: none
+      -ms-overflow-style: none
       &::-webkit-scrollbar {
-        display: none; /* Chrome Safari */
+        display: none
       }
       .vk-tab
-        // flex: 1
-        background: #f7f8fa
-        border-radius: 14px
         position: relative
         text-align: center
-        height: 28px
-        line-height: 28px
         box-sizing: border-box
-        padding: 0 18px
-        margin-left: 8px
+        padding: 0 4px
         span
-          display: inline-block
+          background: $vk-bgc-grey
+          display: block
+          padding: 0 18px
+          border-radius: 14px
+          height: 28px
+          line-height: 28px
           font-size: 12px
-          color: #747D87
+          color: $vk-font-color-text
           overflow: hidden
           white-space: nowrap
           text-overflow: ellipsis
         &:first-child
-          margin-left: 16px
+          padding-left: 16px
         &:last-child
-          margin-right: 16px
+          padding-right: 16px
       .active
-        background: #FEEDE7
         span
-          color: #FF6422
-
+          background: #FEEDE7
+          color: $vk-main-color
   .scroll-spy
     justify-content: flex-start
-
-
-
 </style>

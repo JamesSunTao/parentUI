@@ -13,6 +13,10 @@ import picker from '@/components/picker'
 import popover from '@/components/popover'
 
 import tabs from '@/components/tabs'
+
+
+// 报告类组件
+import reportHeadImage from '@/components/reportComponents/report/report-head-image'
 const components = {
   fadeupMenu,
   headerbar,
@@ -23,7 +27,8 @@ const components = {
   checkboxGroup,
   notify,
   popover,
-  tabs
+  tabs,
+  reportHeadImage
 }
 const prototypes = {
   dialog,

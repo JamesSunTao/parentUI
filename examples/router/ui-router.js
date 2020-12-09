@@ -24,7 +24,7 @@ export default [
         path: '/blur',
         name: 'blur',
         component: resolve => require(['../view/short-video/blur.vue'], resolve)
-    }],
+    }]
   },
   {
     path: '/checkbox',

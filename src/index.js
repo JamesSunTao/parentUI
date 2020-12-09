@@ -4,20 +4,31 @@ import headerbar from '@/components/headerbar'
 import dialog from '@/components/dialog'
 import toast from '@/components/toast'
 import checkbox from '@/components/checkbox'
+import checkboxGroup from '@/components/checkbox-group'
 import actionSheet from '@/components/actionSheet'
 import shortVideoContainer from '@/components/short-video-container'
 import vswitch from '@/components/switch'
+import notify from '@/components/notify'
+import picker from '@/components/picker'
+import popover from '@/components/popover'
+
+import tabs from '@/components/tabs'
 const components = {
   fadeupMenu,
   headerbar,
   actionSheet,
   shortVideoContainer,
   vswitch,
-  checkbox
+  checkbox,
+  checkboxGroup,
+  notify,
+  popover,
+  tabs
 }
 const prototypes = {
   dialog,
   toast,
+  picker
 }
 
 const install = function (Vue) {

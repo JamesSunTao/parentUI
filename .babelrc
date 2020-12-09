@@ -25,22 +25,3 @@
     ["@babel/plugin-proposal-class-properties", { "loose": true }]
   ]
 }
-// {
-//   "presets": [
-//     [
-//       "@babel/preset-env",
-//       {
-//         "targets": [
-//           "> 1%",
-//           "not ie <= 1",
-//           "Chrome >= 39",
-//           "iOS >= 9"
-//         ],
-//         "corejs": 3,
-//         "modules": false,
-//         "useBuiltIns": "usage"
-//       }
-//     ]
-//   ],
-//   "plugins": ["@babel/plugin-transform-runtime"]
-// }

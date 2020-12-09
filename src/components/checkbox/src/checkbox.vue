@@ -6,6 +6,7 @@
         v-if="trueLabel || falseLabel"
         :true-value="trueLabel"
         :false-value="falseLabel"
+        :value="label"
         :name="name"
         type="checkbox"
         class="ui-checkbox__original"
@@ -31,8 +32,10 @@
   </label>
 </template>
 <script>
+import Emitter from '../../../mixins/emitter.js';
 export default {
   name: "checkbox",
+  mixins: [Emitter],
   props: {
     value: {},
     label: {},
@@ -44,29 +47,58 @@ export default {
     size: String,
     activeColor: String
   },
+  data() {
+    return {
+      selfModel: false,
+    }
+  },
+  created() {
+    this.checked && this.addToStore()
+  },
   computed: {
     model: {
       get() {
-        return this.value;
+        return this.isGroup
+            ? this.store : this.value !== undefined
+              ? this.value : this.selfModel;
       },
       set(val) {
-        this.$emit("input", val);
+        if(this.isGroup) {
+           this.dispatch('UiCheckboxGroup', 'input', [val]);
+        }
+        this.$emit("input", val)
+        this.selfModel = val;
       },
     },
+    isGroup() {
+        let parent = this.$parent;
+        while (parent) {
+          if (parent.$options.componentName !== 'UiCheckboxGroup') {
+            parent = parent.$parent
+          } else {
+            this._checkboxGroup = parent
+            return true;
+          }
+        }
+        return false;
+      },
+    store() {
+        return this._checkboxGroup ? this._checkboxGroup.value : this.value;
+      },
     isChecked() {
       if ({}.toString.call(this.model) === "[object Boolean]") {
         return this.model;
       } else if (Array.isArray(this.model)) {
-        return this.model.indexOf(this.label) > -1;
+        return this.model.indexOf(this.label) > -1
       } else if (this.model !== null && this.model !== undefined) {
-        return this.model === this.trueLabel;
+        return this.model === this.trueLabel
       }
     },
     isDisabled() {
-      return this.disabled
+      return this.isGroup ? this._checkboxGroup.disabled || this.disabled : this.disabled
     },
     isSmall() {
-      return this.size === 'small'
+      return this.isGroup ? this._checkboxGroup.checkboxGroupSize :this.size === 'small'
     }
   },
   mounted() {
@@ -88,6 +120,13 @@ export default {
    }
   },
   methods: {
+    addToStore() {
+      if (Array.isArray(this.model) && this.model.indexOf(this.label) === -1) {
+          this.model.push(this.label)
+        } else {
+          this.model = this.trueLabel || true
+        }
+    },
     handleChange(ev) {
       let value
       if (ev.target.checked) {
@@ -96,23 +135,24 @@ export default {
           value = this.falseLabel === undefined ? false : this.falseLabel
         }
        this.$emit('change', value, ev)
+        this.$nextTick(() => {
+          if (this.isGroup) {
+            this.dispatch('UiCheckboxGroup', 'change', [this._checkboxGroup.value]);
+          }
+        });
     },
   },
 }
 </script>
 <style lang="stylus" scoped>
+@import '../../../style/var.styl'
 .ui-checkbox
-  color: #606266
-  font-weight: 500
-  font-size: 14px
   position: relative
-  cursor: pointer
   display: inline-block
   white-space: nowrap
   user-select: none
 .ui-checkbox__input
   white-space: nowrap
-  cursor: pointer
   outline: none
   display: inline-block
   line-height: 1
@@ -132,9 +172,9 @@ export default {
     border: 1px solid #dcdfe6
     border-radius: 50%
     box-sizing: border-box
-    width: 26px
-    height: 26px
-    background-color: #fff
+    width: $vk-checkbox-width
+    height: $vk-checkbox-height
+    background-color: $vk-bgc-white
     z-index: 1
     transition: border-color 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46), background-color 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46)
     &::after
@@ -142,7 +182,7 @@ export default {
       box-sizing: content-box
       content: ''
       display: block;
-      border: 2px solid #fff
+      border: 2px solid $vk-bgc-white
       border-left: 0
       border-top: 0
       height: 12px
@@ -156,16 +196,16 @@ export default {
       transform-origin: center
 &.is-checked
   .ui-checkbox__inner
-    background-color: #FF5500
+    background-color: $vk-main-color
     border: none
     &::after 
       transform: rotate(45deg) scaleY(1)
   .ui-checkbox__label
-    color: #FF5500
+    color: $vk-main-color
 &.ui-checkbox__small
   .ui-checkbox__inner 
-    width: 18px
-    height: 18px
+    width: $vk-checkbox_small-width
+    height: $vk-checkbox_small-height
     &::after
       top: 3px
       width: 3px
@@ -176,7 +216,6 @@ export default {
     background-color: #edf2fc
     border-color: #dcdfe6
     &::after
-      cursor: not-allowed
       border-color: #c0c4cc
   .ui-checkbox__label
     color: #606266

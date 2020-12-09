@@ -78,6 +78,7 @@ export default {
           }else {
                let { left:left1, top, width:width1, height,right} = this.$refs.content.getBoundingClientRect()
                this.$refs.content.style.left = left - width1 + width + document.documentElement.scrollLeft + 10 + 'px'
+               this.$refs.content.style.marginBottom = 6 + 'px'
           }
          this.$refs.content.style.top = top  + document.documentElement.scrollTop +'px'
        }else if(this.position_y == 'bottom'){

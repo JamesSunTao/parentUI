@@ -2,12 +2,11 @@ popover
 ## Attributes
 |  参数 | 说明 | 类型  | 可选值  | 默认值  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|position_x|控制组件显示隐藏|Boolean|true/false|false|
-|position_y|菜单列表,具体数值，见下表|Array| - |null|
-|closeable|是否展示取消按钮|String| - |-|
-|label|是否展示头部描述|String| - |-|
-|type|title配置，具体可选值见下表|Object| - |-|
-|label|是否展示头部描述|String| - |-|
-|theme|是否展示头部描述|String| - |-|
-|autoShow|是否展示头部描述|String| - |-|
-|stopClickDom|是否展示头部描述|String| - |-|
+|position_x|小箭头左右位置|String|left/right|left|
+|position_y|小箭头左右位置|String|top/bottom|top|
+|closeable|是否展示取消按钮|Boolean|true/false |false|
+|label|文字描述|String| - |-|
+|type|支持多行（关闭按钮位置）|mutil| - |-|
+|theme|背景（主题）|String|light  |-|
+|autoShow|是否自动展示|Bealoon| - |-|
+|stopClickDom|是否阻止doc的click事件| - |-|

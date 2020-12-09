@@ -2,7 +2,7 @@
   <div class="ui-popover" ref="popover" @click="onClick" >
     <div v-if="visiable && !$slots.default" class="content" :class="{[`position-${position_y}`]:true,[`position-${position_x}`]:true,[type]:true,light:isBgWhite}" ref="content">
         <div class="label">{{label}}</div>
-        <div v-show="closeable" class="close" @click="close"></div>
+        <div v-show="!closeable" class="close" @click="close"></div>
         <div class="symbol" ref="symbol"></div>
     </div>
     <div v-else-if="visiable && $slots.default " style="flex-direction: column" :class="{[`position-${position_y}`]:true,[`position-${position_x}`]:true,light:isBgWhite}" class="content"  ref="content">
@@ -35,7 +35,7 @@ export default {
     },
     closeable: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     label: {
        type: String,

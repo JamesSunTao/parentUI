@@ -4,13 +4,13 @@
     <div class="content">
       <div class="content-item">
         <div class="info">默认态度（弹框位置）</div>
-        <popover class="aa"  autoShow stopClickDom label="字啊啊我是文字啊">
+        <popover class="aa"  autoShow stopClickDom label="点击doc，后我是不会关闭的">
         <span class="btn" @click="fn" slot="button">左上</span>
         </popover>
-        <popover class="aa"   stopClickDom position_y="bottom" label="字啊啊我是文字啊">
+        <popover class="aa" position_y="bottom" label="点击doc，我会关闭的">
         <span class="btn" @click="fn" slot="button">左下</span>
         </popover>
-        <popover class="aa" position_x="right" stopClickDom label="字啊啊我是文字啊">
+        <popover class="aa" position_x="right" stopClickDom closeable label="我没有关闭按钮">
         <span class="btn" @click="fn" slot="button">右上</span>
         </popover>
         <popover class="aa" position_x="right" position_y="bottom"   stopClickDom label="字啊啊我是文字啊">
@@ -28,10 +28,19 @@
         <popover class="aa" type="multi" label="啊我是文字啊啊啊我是文字啊啊啊我是文字啊啊我是文字啊">
           <span class="btn" slot="button">点我</span>
         </popover>
+        <popover class="aa" type="multi"  position_x="right" label="啊我是文字啊啊啊我是文字啊啊啊我是文字啊啊我是文字啊">
+          <span class="btn" slot="button">点我</span>
+        </popover>
+        <popover class="aa" type="multi"  position_y="bottom"  label="啊我是文字啊啊啊我是文字啊啊啊我是文字啊啊我是文字啊">
+          <span class="btn" slot="button">点我</span>
+        </popover>
       </div>
        <div class="content-item">
         <div class="info">更换主题（背景白色）</div>
         <popover class="aa" type="multi" theme="light" label="啊我是文字啊啊啊我是文字啊啊啊我是文字啊啊我是文字啊">
+          <span class="btn" slot="button">点我</span>
+        </popover>
+        <popover class="aa" type="multi" theme="light" position_y="bottom" label="啊啊啊我是文字啊啊我是文字啊">
           <span class="btn" slot="button">点我</span>
         </popover>
       </div>

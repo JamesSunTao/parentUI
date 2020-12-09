@@ -15,7 +15,7 @@
         <span v-text="description"></span>
       </div>
       <div v-if="actions" class="vk-action-sheet-menu-container">
-        <div :class="['vk-action-sheet-menu-li', item.className]" v-for="item in actions" :key="item.tag" @click="itemclick(item)">
+        <div :class="['vk-action-sheet-menu-li', item.className]" v-for="(item, index) in actions" :key="index" @click="itemclick(item)">
           <span :style="{color: item.color}" :class="{'vk-action-sheet-disabled': item.disabled}">{{item.name}}</span>
           <span class="vk-action-sheet-menu-li-des" v-if="item.description" v-text="item.description"></span>
         </div>

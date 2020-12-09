@@ -105,7 +105,7 @@ export default {
             })
             typeMapping['city'][0].values = values.sonAddress
           } else {
-            throw new Error('缺少code')
+            throw new Error('code is require')
           }
           break;
         case 'area':
@@ -113,7 +113,7 @@ export default {
             let values = this.findDataForCode(typeMapping['city'][0].values)
             typeMapping['area'][0].values = values.sonAddress
           } else {
-            throw new Error('缺少code')
+            throw new Error('code is require')
           }
           break
         default: 
@@ -144,14 +144,15 @@ export default {
       return data
     },
     slotValueChange() {
+      // provinceList 拿到全部的省列表
       let provinceList = COUNTRYLIST[0].sonAddress
-      if (this.values.length > 0) {
-        let provinceIndex = provinceList.findIndex((item) => {return item.code === this.values[0]['code']})
-        let cityList = provinceList[provinceIndex].sonAddress
-        let cityIndex = cityList.findIndex((item) => {return item.code === this.values[1]['code']})
-        this.setSlotValues(1, cityList)
-        cityList[cityIndex] && this.setSlotValues(2, cityList[cityIndex].sonAddress)
-      }
+      // provinceIndex 获取当前切换选中的 省 index
+      let provinceIndex = provinceList.findIndex((item) => {return item.code === this.values[0]['code']})
+      //  cityLit 获取当选选中省下面所有的城市列表
+      let cityList = provinceList[provinceIndex].sonAddress
+      this.setSlotValues(1, cityList)
+      let cityIndex = cityList.findIndex((item) => {return item.code === this.values[1]['code']})
+      cityList[cityIndex] && this.setSlotValues(2, cityList[cityIndex].sonAddress)
     },
     setSlotValues(index, values) {
       var slot = this.getSlot(index)
@@ -180,7 +181,6 @@ export default {
       event.preventDefault()
     },
     closePicker() {
-      this.$emit('update:isShow', false)
       this.iShow = false
     },
     confirmHandle() {
@@ -291,7 +291,6 @@ export default {
     // display: -webkit-flex
     display: -ms-flexbox
     display: flex
-    display: box
     display: -webkit-box
     display: -webkit-flex
     display: -moz-box

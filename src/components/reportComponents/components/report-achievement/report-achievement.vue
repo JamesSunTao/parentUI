@@ -1,7 +1,7 @@
 <template lang="pug">
   .vk-report-achievement-container
     .vk-achievement-bg
-      .vk-achievement-hint
+      .vk-achievement-hint(v-if="hintText" @click="openHint")
       .vk-achievement-rote(:style="roteStyle")
 </template>
 <script>
@@ -22,11 +22,22 @@ const achienementMapping = {
 }
 export default {
   props: {
-    rote: String
+    rote: String,
+    hintText: String
   },
   computed: {
     roteStyle() {
       return {'background-image': `url(${achienementMapping[this.rote]})`}
+    }
+  },
+  methods: {
+    openHint() {
+      this.$dialog({
+        hasCancel: false,
+        textCenter: true,
+        text: this.hintText,
+        confirm: '我知道了'
+      })
     }
   }
 }
@@ -40,6 +51,16 @@ export default {
   position relative
   background-image url('../../asstes/images/head-bg.png')
   background-size cover
+  .vk-achievement-hint
+    display inline-block
+    height 13px
+    width 13px
+    position absolute
+    top 30%
+    right 15%
+    background-image url('../../asstes/images/hint.png')
+    position absolute
+    background-size cover
   .vk-achievement-rote
     width 52px
     height 70px

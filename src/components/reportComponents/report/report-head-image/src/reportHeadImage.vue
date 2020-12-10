@@ -2,7 +2,7 @@
   .vk-report-head-image-container
     .vk-report-head-image(:style="headProps.headStyle")
       headPort(:name="headProps.name" :headImage="headProps.headImage")
-    headAchievement(:rote="headProps.rote")
+    headAchievement(:rote="headProps.rote" :hint-text="headProps.hintText")
     .vk-report-head-title
       headFirstTitle(:title="headProps.firstTitle")
       headSecondTitle(:title="headProps.secondTitle")
@@ -22,6 +22,7 @@ export default {
         left: 20,
         headImage: headImage,
         name: 'name',
+        hintText: '',
         rote: 'aPuls',
         firstTitle: '这是一级标题',
         secondTitle: '这是二级标题',
@@ -30,7 +31,7 @@ export default {
   },
   props: {
     headPropsDes: {
-      type: String,
+      type: Object,
       default: () => {
         return null
       }
@@ -38,7 +39,7 @@ export default {
   },
   created() {
     if (this.headPropsDes) {
-      this.headProps = {...headPropsDes}
+      this.headProps = Object.assign(this.headProps, this.headPropsDes)
     }
   },
   computed: {

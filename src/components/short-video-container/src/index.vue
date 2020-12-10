@@ -16,7 +16,7 @@
             :class="[!videoHasPlay? 'hide':'', videolist[videoContentId][screenConfig.screenTypeCode] == screenConfig.screenType? 'vertical':'horizontal']"
             ref="videoContainer"
             type="video/mp4"
-            autoplay="autoplay"
+            :autoplay="autoplay"
             preload="none"
             webkit-playsinline="true"
             playsinline="true"
@@ -62,7 +62,8 @@ export default {
       videoLoading: false,
       userPlaying: false,
       startTime: 0,
-      clickCount: 0
+      clickCount: 0,
+      autoplay: false
     }
   },
   watch: {
@@ -225,6 +226,7 @@ export default {
     videoPlay() {
       let v = this.$refs.videoContainer
       v && v.play()
+      this.autoplay = true
       this.videoHasPlay = true
       this.videoPlaying = true
       this.userPlaying = true

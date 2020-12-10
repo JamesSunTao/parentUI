@@ -89,10 +89,9 @@ export default {
       }
     }
   },
-  created() {
+  updated() {
     if (this.type == 'region') { // 当传入类型为 region 需要省市区联动，监听数据改变，联动
-      this.$on('slotValueChange', this.slotValueChange)
-      this.slotValueChange()
+      this.eventHanle()
     }
   },
   computed: {
@@ -137,6 +136,10 @@ export default {
     },
   },
   methods: {
+    eventHanle() {
+      this.$on('slotValueChange', this.slotValueChange)
+      this.slotValueChange()
+    },
     findDataForCode(option) {
       let data = option.find(res => {
         return res.code == this.code

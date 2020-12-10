@@ -28,12 +28,24 @@ export default {
       }
     }
   },
+  props: {
+    headPropsDes: {
+      type: String,
+      default: () => {
+        return null
+      }
+    }
+  },
+  created() {
+    if (this.headPropsDes) {
+      this.headProps = {...headPropsDes}
+    }
+  },
   computed: {
     headStyle() {
       return {'left': this.left + 'px'}
     }
   },
-  props: {},
   components: {
     headPort, headAchievement, headFirstTitle, headSecondTitle
   }

@@ -16,7 +16,7 @@
             :class="[!videoHasPlay? 'hide':'', videolist[videoContentId][screenConfig.screenTypeCode] == screenConfig.screenType? 'vertical':'horizontal']"
             ref="videoContainer"
             type="video/mp4"
-            autoplay="autoplay"
+            :autoplay="autoplay"
             preload="none"
             webkit-playsinline="true"
             playsinline="true"
@@ -53,6 +53,7 @@ export default {
       delta: 0, //滑动距离
       isOver: false,
       active: 0,
+      autoplay: false,
       hasView: NaN, //用于判断当前播放视频是否是当前active
       videoContentId: 0,
       videoTime: 0,
@@ -225,6 +226,7 @@ export default {
     videoPlay() {
       let v = this.$refs.videoContainer
       v && v.play()
+      this.autoplay = true
       this.videoHasPlay = true
       this.videoPlaying = true
       this.userPlaying = true

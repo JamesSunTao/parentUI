@@ -11,7 +11,7 @@ import bPuls from '../../asstes/images/head-b+.png'
 import b from '../../asstes/images/head-b.png'
 import cPuls from '../../asstes/images/head-c+.png'
 import c from '../../asstes/images/head-c.png'
-
+import $dialog from '../../../dialog/index.js'
 const achienementMapping = {
   aPuls: aPuls,
   a: a,
@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     openHint() {
-      this.$dialog({
+      $dialog({
         hasCancel: false,
         textCenter: true,
         text: this.hintText,

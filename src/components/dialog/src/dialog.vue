@@ -152,7 +152,6 @@ p
         line-height 21px
         color #4B525C
         max-height 115px
-        overflow-y scroll
         word-break break-all
         text-align justify
       &__text-center

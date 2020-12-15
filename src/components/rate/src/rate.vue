@@ -70,14 +70,14 @@ export default {
   margin-bottom: 24px
   .star-box
     box-sizing: border-box
-    background: #fff
+    background: $vk-bgc-while-pure
     padding: 16px
     border-radius: 8px
     h3
       font-size: 18px
       font-weight: 600
       text-align: left
-      color: #2f3338
+      color: $vk-font-color-2
       line-height: 25px
       position: relative
       margin: 0
@@ -88,15 +88,15 @@ export default {
         right: 0
         font-size: 12px
         font-weight: 400
-        color: #979da6
-        border: 1px solid #979da6;
+        color: $vk-font-color-auxiliary
+        border: 1px solid $vk-font-color-auxiliary
         border-radius: 12px;
         height: 24px
         line-height: 24px
         box-sizing: border-box
         padding: 0 8px
     .star-intro
-      color: #979da6
+      color: $vk-font-color-auxiliary
       line-height: 17px
       font-size: 12px
       padding-top: 6px
@@ -115,28 +115,28 @@ export default {
           filter: grayscale(100%)
           opacity: 0.5
         p
-          color: #747d87
+          color: $vk-font-color-text
           margin: 12px 0 0 0
           font-size: 12px
     .star-result
       text-align: center
       font-size: 12px
       font-weight: 400
-      color: #2f3338
+      color: $vk-font-color-2
       margin: 12px 0 0 0
     .tag_warp
       margin-top: 14px
       text-align: center
       .active
-        color: #FF6422
-        border: 1px solid #ff6422
+        color: $vk-main-color
+        border: 1px solid $vk-main-color
         background: #feede7
       span
         font-size: 12px
         display: inline-block
         border-radius: 16px
-        border: 1px solid #d5d9de
-        background: #f7f8fa
+        border: 1px solid $vk-font-color-disable
+        background: $vk-bgc-grey
         box-sizing: border-box
         padding: 9px 26px
         text-align: center

@@ -44,7 +44,8 @@ export default [
     path: '/popover',
     name: 'popover',
     component: resolve => require(['../components/popover.vue'], resolve)
-  }, {
+  },
+  {
     path: '/tabs',
     name: 'tabs',
     component: resolve => require(['../components/tabs.vue'], resolve),
@@ -52,5 +53,14 @@ export default [
     path: '/badge',
     name: 'badge',
     component: resolve => require(['../components/badge.vue'], resolve),
+  },
+  {
+    path: '/rate',
+    name: 'rate',
+    component: resolve => require(['../components/rate.vue'], resolve),
+  }, {
+    path: '/vbutton',
+    name: 'vbutton',
+    component: resolve => require(['../components/vbutton.vue'], resolve),
   }
 ]

@@ -1,4 +1,4 @@
-import button from '@/components/button'
+import vbutton from '@/components/button'
 import fadeupMenu from '@/components/fadeup-menu'
 import headerbar from '@/components/headerbar'
 import dialog from '@/components/dialog'
@@ -14,6 +14,7 @@ import popover from '@/components/popover'
 import badge from '@/components/badge'
 
 import tabs from '@/components/tabs'
+import rate from '@/components/rate'
 
 
 // 报告类组件
@@ -30,7 +31,9 @@ const components = {
   popover,
   tabs,
   reportHeadImage,
-  badge
+  badge,
+  rate,
+  vbutton
 }
 const prototypes = {
   dialog,

@@ -13,6 +13,7 @@ import picker from '@/components/picker'
 import popover from '@/components/popover'
 
 import tabs from '@/components/tabs'
+import rate from '@/components/rate'
 
 
 // 报告类组件
@@ -28,7 +29,8 @@ const components = {
   notify,
   popover,
   tabs,
-  reportHeadImage
+  reportHeadImage,
+  rate
 }
 const prototypes = {
   dialog,

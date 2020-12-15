@@ -44,9 +44,15 @@ export default [
     path: '/popover',
     name: 'popover',
     component: resolve => require(['../components/popover.vue'], resolve)
-  }, {
+  },
+  {
     path: '/tabs',
     name: 'tabs',
     component: resolve => require(['../components/tabs.vue'], resolve),
+  },
+  {
+    path: '/rate',
+    name: 'rate',
+    component: resolve => require(['../components/rate.vue'], resolve),
   }
 ]

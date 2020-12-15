@@ -49,6 +49,10 @@ export default [
     path: '/tabs',
     name: 'tabs',
     component: resolve => require(['../components/tabs.vue'], resolve),
+  }, {
+    path: '/badge',
+    name: 'badge',
+    component: resolve => require(['../components/badge.vue'], resolve),
   },
   {
     path: '/rate',

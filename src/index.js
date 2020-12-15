@@ -11,6 +11,7 @@ import vswitch from '@/components/switch'
 import notify from '@/components/notify'
 import picker from '@/components/picker'
 import popover from '@/components/popover'
+import badge from '@/components/badge'
 
 import tabs from '@/components/tabs'
 import rate from '@/components/rate'
@@ -30,6 +31,7 @@ const components = {
   popover,
   tabs,
   reportHeadImage,
+  badge,
   rate,
   vbutton
 }

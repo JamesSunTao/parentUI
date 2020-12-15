@@ -11,7 +11,7 @@
         <p v-if="!curEvaluated">{{sItem.starText}}</p>
       </div>
     </div>
-    <p class="star-result" v-if="curEvaluated">{{startList[`${curIndex}`].starText}}</p>
+    <p class="star-result" v-if="curEvaluated">{{startList[`${activeIndex}`].starText}}</p>
   </div>
 </div>
 </template>

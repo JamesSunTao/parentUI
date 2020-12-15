@@ -1,4 +1,4 @@
-import button from '@/components/button'
+import vbutton from '@/components/button'
 import fadeupMenu from '@/components/fadeup-menu'
 import headerbar from '@/components/headerbar'
 import dialog from '@/components/dialog'
@@ -30,7 +30,8 @@ const components = {
   popover,
   tabs,
   reportHeadImage,
-  rate
+  rate,
+  vbutton
 }
 const prototypes = {
   dialog,

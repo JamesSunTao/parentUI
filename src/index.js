@@ -11,6 +11,7 @@ import vswitch from '@/components/switch'
 import notify from '@/components/notify'
 import picker from '@/components/picker'
 import popover from '@/components/popover'
+import badge from '@/components/badge'
 
 import tabs from '@/components/tabs'
 
@@ -28,7 +29,8 @@ const components = {
   notify,
   popover,
   tabs,
-  reportHeadImage
+  reportHeadImage,
+  badge
 }
 const prototypes = {
   dialog,

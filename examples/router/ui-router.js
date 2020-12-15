@@ -54,5 +54,9 @@ export default [
     path: '/rate',
     name: 'rate',
     component: resolve => require(['../components/rate.vue'], resolve),
+  }, {
+    path: '/vbutton',
+    name: 'vbutton',
+    component: resolve => require(['../components/vbutton.vue'], resolve),
   }
 ]

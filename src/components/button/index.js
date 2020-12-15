@@ -1,7 +1,7 @@
-import button from './src/button.vue'
+import vbutton from './src/vbutton.vue'
 
-button.install = function (Vue) {
-  Vue.component(button.name, button)
+vbutton.install = function (Vue) {
+  Vue.component(vbutton.name, vbutton)
 }
 
-export default button
+export default vbutton

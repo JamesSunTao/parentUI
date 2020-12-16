@@ -1,5 +1,5 @@
 <template>
-  <div class="vipkid-nodata">
+  <div class="vipkid-nodata" :style="{backgroundImage:'url(' +  bgimg + ')'}">
     <p class="title">
       {{mainTitle}}
     </p>
@@ -23,6 +23,10 @@ export default {
     mainTitle: {
       type: String,
       default: "暂无数据",
+    },
+    bgimg: {
+      type: String,
+      default: "https://img.vipkidstatic.com/prt/image/tools/upload/xkj60lG2DKynP.gif",
     },
     showSubtitle: Boolean,
     showSubBtn: Boolean,
@@ -50,9 +54,9 @@ export default {
   width 100%
   overflow hidden
   height 100%
-  background url("../img/nodata.png") center 30% / 220px auto no-repeat
+  background url("https://img.vipkidstatic.com/prt/image/tools/upload/xkj60lG2DKynP.gif") center 30% / 220px 220px no-repeat
   .title {
-    margin-top 100%
+    margin-top 103%
     font-size: 16px
     font-family: PingFangSC, PingFangSC-Regular
     font-weight: 400

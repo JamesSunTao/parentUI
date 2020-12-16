@@ -66,5 +66,9 @@ export default [
     path: '/nodata',
     name: 'nodata',
     component: resolve => require(['../components/nodata.vue'], resolve),
+  }, {
+    path: '/list',
+    name: 'list',
+    component: resolve => require(['../components/list.vue'], resolve)
   }
 ]

@@ -1,6 +1,7 @@
 <template>
   <div class="button-demo-wrap">
-    <div class="button-demo-block">
+    <headerbar title="button"/>
+    <div class="button-demo-block" style="padding-top: 44px">
       <h2>一级主按钮</h2>
       <span class="big-button">
         <vbutton type="primary" size="large">primary large</vbutton>

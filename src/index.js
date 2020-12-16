@@ -12,6 +12,7 @@ import notify from '@/components/notify'
 import picker from '@/components/picker'
 import popover from '@/components/popover'
 import badge from '@/components/badge'
+import nodata from '@/components/nodata'
 
 import tabs from '@/components/tabs'
 import rate from '@/components/rate'
@@ -33,7 +34,8 @@ const components = {
   reportHeadImage,
   badge,
   rate,
-  vbutton
+  vbutton,
+  nodata
 }
 const prototypes = {
   dialog,

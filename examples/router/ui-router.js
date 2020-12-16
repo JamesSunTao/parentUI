@@ -62,5 +62,9 @@ export default [
     path: '/vbutton',
     name: 'vbutton',
     component: resolve => require(['../components/vbutton.vue'], resolve),
+  }, {
+    path: '/nodata',
+    name: 'nodata',
+    component: resolve => require(['../components/nodata.vue'], resolve),
   }
 ]

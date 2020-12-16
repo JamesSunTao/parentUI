@@ -2,7 +2,7 @@
 <button
   :class="['ui-button', `ui-button__${type}`, `ui-button__${size}`, {
     'ui-button__plain': plain,
-    'ui-button__disabled': disabled,
+    'ui-button__disabled': disabled || loading,
     'ui-button__weak': weak
   }]"
   :style="getStyle()"

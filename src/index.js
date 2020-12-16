@@ -17,6 +17,7 @@ import nodata from '@/components/nodata'
 import tabs from '@/components/tabs'
 import rate from '@/components/rate'
 
+import list from '@/components/list'
 
 // 报告类组件
 import reportHeadImage from '@/components/reportComponents/report/report-head-image'
@@ -35,7 +36,8 @@ const components = {
   badge,
   rate,
   vbutton,
-  nodata
+  nodata,
+  list
 }
 const prototypes = {
   dialog,

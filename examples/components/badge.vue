@@ -35,7 +35,7 @@ export default {};
 
 <style lang='stylus' scoped>
 .main_content {
-  padding: 80px 10px 10px;
+  padding: 80px 0px 10px;
   h3 {
     margin-top:20px
   }

@@ -3,13 +3,13 @@
     <p class="title">
       {{mainTitle}}
     </p>
-    <p class="sec-title" v-show="showSubtitle">
+    <p class="sec-title" v-if="showSubtitle">
       {{subTitle}}
     </p>
-    <div class="sec-btn"  @click="$emit('subFunction')" v-show="showSubBtn">
+    <div class="sec-btn"  @click="$emit('subFunction')" v-if="showSubBtn">
       {{subBtnDesc}}
     </div>
-    <div class="main-btn" @click="$emit('mainFunction')">
+    <div class="main-btn" @click="$emit('mainFunction')" v-if="showMainBtnStatus">
       {{mainBtnDesc}}
     </div>
   </div>
@@ -18,7 +18,11 @@
 <script>
 export default {
   name: "nodata",
-
+  data () {
+    return {
+      showMainBtnStatus: false 
+    }
+  },
   props: {
     mainTitle: {
       type: String,
@@ -30,6 +34,7 @@ export default {
     },
     showSubtitle: Boolean,
     showSubBtn: Boolean,
+    showMainBtn: Boolean,
     subBtnDesc: {
       type: String,
       default: "检测一下",
@@ -44,6 +49,9 @@ export default {
     },
 
   },
+  mounted () {
+    this.showMainBtnStatus = this.showSubBtn ? this.showSubBtn : this.showMainBtn
+  },
   methods: {
   }
 };
@@ -51,12 +59,12 @@ export default {
 
 <style lang='stylus' scoped>
 .vipkid-nodata {
-  width 100%
+  width 100vw
   overflow hidden
-  height 100%
+  height 100vh
   background url("https://img.vipkidstatic.com/prt/image/tools/upload/xkj60lG2DKynP.gif") center 30% / 220px 220px no-repeat
   .title {
-    margin-top 103%
+    margin-top 46vh
     font-size: 16px
     font-family: PingFangSC, PingFangSC-Regular
     font-weight: 400

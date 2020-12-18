@@ -24,7 +24,7 @@ export default [
         path: '/blur',
         name: 'blur',
         component: resolve => require(['../view/short-video/blur.vue'], resolve)
-    }],
+    }]
   },
   {
     path: '/checkbox',
@@ -44,5 +44,35 @@ export default [
     path: '/popover',
     name: 'popover',
     component: resolve => require(['../components/popover.vue'], resolve)
+  },
+  {
+    path: '/tabs',
+    name: 'tabs',
+    component: resolve => require(['../components/tabs.vue'], resolve),
+  }, {
+    path: '/badge',
+    name: 'badge',
+    component: resolve => require(['../components/badge.vue'], resolve),
+  },
+  {
+    path: '/rate',
+    name: 'rate',
+    component: resolve => require(['../components/rate.vue'], resolve),
+  }, {
+    path: '/vbutton',
+    name: 'vbutton',
+    component: resolve => require(['../components/vbutton.vue'], resolve),
+  }, {
+    path: '/nodata',
+    name: 'nodata',
+    component: resolve => require(['../components/nodata.vue'], resolve),
+  }, {
+    path: '/list',
+    name: 'list',
+    component: resolve => require(['../components/list.vue'], resolve),
+  }, {
+    path: '/imageView',
+    name: 'imageView',
+    component: resolve => require(['../components/image-view.vue'], resolve),
   }
 ]

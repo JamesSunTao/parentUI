@@ -52,7 +52,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           esModule: false,
-          limit: 10000,
+          limit: 20000,
           name: 'static/img/[name].[hash:7].[ext]'
         }
       },
@@ -61,7 +61,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           esModule: false,
-          limit: 10000,
+          limit: 20000,
           name: 'static/media/[name].[hash:7].[ext]'
         }
       },
@@ -70,7 +70,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           esModule: false,
-          limit: 10000,
+          limit: 20000,
           name: 'static/fonts/[name].[hash:7].[ext]'
         }
       },

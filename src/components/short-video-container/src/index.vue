@@ -53,6 +53,7 @@ export default {
       delta: 0, //滑动距离
       isOver: false,
       active: 0,
+      autoplay: false,
       hasView: NaN, //用于判断当前播放视频是否是当前active
       videoContentId: 0,
       videoTime: 0,

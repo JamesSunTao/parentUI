@@ -1,0 +1,29 @@
+@import "./themes.styl"
+// 背景色
+.vk-report
+  margin-bottom 10px
+bg_color($color)
+  background purple[$color];
+  for item in themeList
+    [data-theme = {item.name}] & {
+      background: item[$color];
+    }
+// 头像背景色
+head_color($color)
+  background purple[$color];
+  for item in themeList
+    [data-theme = {item.name}] & {
+      background: item[$color];
+    }
+
+// 单行超出省略号
+ellipsis()
+  overflow hidden
+  text-overflow ellipsis
+  white-space nowrap
+// 垂直水平居中
+allCenter()
+  position absolute
+  top 50%
+  left 50%
+  transform: translateX(-50%) translateY(-50%)

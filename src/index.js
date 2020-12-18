@@ -13,6 +13,7 @@ import picker from '@/components/picker'
 import popover from '@/components/popover'
 import badge from '@/components/badge'
 import nodata from '@/components/nodata'
+import imageView from '@/components/image-view'
 
 import tabs from '@/components/tabs'
 import rate from '@/components/rate'
@@ -31,6 +32,7 @@ const components = {
   checkboxGroup,
   notify,
   popover,
+  imageView,
   tabs,
   reportHeadImage,
   badge,

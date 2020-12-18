@@ -69,6 +69,10 @@ export default [
   }, {
     path: '/list',
     name: 'list',
-    component: resolve => require(['../components/list.vue'], resolve)
+    component: resolve => require(['../components/list.vue'], resolve),
+  }, {
+    path: '/imageView',
+    name: 'imageView',
+    component: resolve => require(['../components/image-view.vue'], resolve),
   }
 ]

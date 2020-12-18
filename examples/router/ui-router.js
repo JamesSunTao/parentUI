@@ -48,5 +48,9 @@ export default [
     path: '/tabs',
     name: 'tabs',
     component: resolve => require(['../components/tabs.vue'], resolve),
+  }, {
+    path: '/imageView',
+    name: 'imageView',
+    component: resolve => require(['../components/image-view.vue'], resolve),
   }
 ]

@@ -11,6 +11,7 @@ import vswitch from '@/components/switch'
 import notify from '@/components/notify'
 import picker from '@/components/picker'
 import popover from '@/components/popover'
+import imageView from '@/components/image-view'
 
 import tabs from '@/components/tabs'
 
@@ -27,6 +28,7 @@ const components = {
   checkboxGroup,
   notify,
   popover,
+  imageView,
   tabs,
   reportHeadImage
 }

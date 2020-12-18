@@ -7,10 +7,24 @@
 export default {
   methods: {
     mainFunction () {
-      alert('点击主按钮')
+      this.$dialog({
+        type: 'warning', 
+        text: 'warning',
+      }).then((value)=>{
+        console.log(value)
+      }).catch((e)=>{
+        console.log(e)
+      })
     },
     subFunction () {
-      alert('点击副按钮')
+      this.$dialog({
+        type: 'warning', 
+        text: 'warning',
+      }).then((value)=>{
+        console.log(value)
+      }).catch((e)=>{
+        console.log(e)
+      })
     },
   }
 }

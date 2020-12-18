@@ -13,12 +13,12 @@ import cPuls from '../../asstes/images/head-c+.png'
 import c from '../../asstes/images/head-c.png'
 import $dialog from '../../../dialog/index.js'
 const achienementMapping = {
-  aPuls: aPuls,
-  a: a,
-  bPuls: bPuls,
-  b: b,
-  cPuls: cPuls,
-  c: c
+  'A+': aPuls,
+  'A': a,
+  'B+': bPuls,
+  'B': b,
+  "C+": cPuls,
+  'C': c
 }
 export default {
   props: {

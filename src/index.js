@@ -22,6 +22,8 @@ import list from '@/components/list'
 
 // 报告类组件
 import reportHeadImage from '@/components/reportComponents/report/report-head-image'
+//报告类主题
+import reportThemes from '@/components/reportComponents/themes/theme.vue'
 const components = {
   fadeupMenu,
   headerbar,
@@ -39,7 +41,9 @@ const components = {
   rate,
   vbutton,
   nodata,
-  list
+  list,
+  reportHeadImage,
+  reportThemes
 }
 const prototypes = {
   dialog,
@@ -59,7 +63,6 @@ const install = function (Vue) {
 if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue)
 }
-
 
 export default {
   version: '0.1.6',

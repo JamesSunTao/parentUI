@@ -1,5 +1,8 @@
 <template>
-  <div class="vipkid-nodata" :style="{backgroundImage:'url(' +  bgimg + ')'}">
+  <div class="vipkid-nodata">
+    <div class="bgimg" :style="{backgroundImage:'url(' +  bgimg + ')'}">
+
+    </div>
     <p class="title">
       {{mainTitle}}
     </p>
@@ -62,9 +65,15 @@ export default {
   width 100vw
   overflow hidden
   height 100vh
-  background url("https://img.vipkidstatic.com/prt/image/tools/upload/xkj60lG2DKynP.gif") center 30% / 220px 220px no-repeat
+  text-align center
+  .bgimg {
+    width 220px
+    height 220px
+    margin 18vh auto 0
+    background url("https://img.vipkidstatic.com/prt/image/tools/upload/xkj60lG2DKynP.gif") center center / 220px 220px no-repeat
+  }
   .title {
-    margin-top 46vh
+    margin-top -10px
     font-size: 16px
     font-family: PingFangSC, PingFangSC-Regular
     font-weight: 400

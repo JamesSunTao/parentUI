@@ -41,6 +41,11 @@ export default [
     component: resolve => require(['../components/checkbox-group.vue'], resolve),
   },
   {
+    path: '/search',
+    name: 'search',
+    component: resolve => require(['../components/search.vue'], resolve)
+  }, 
+  {
     path: '/popover',
     name: 'popover',
     component: resolve => require(['../components/popover.vue'], resolve)

@@ -5,7 +5,7 @@
     <div class="menu">
       <slot></slot>
       <div class="menu-li cancel" @click.stop="close">取消</div>
-    </div>
+    </div>mask
   </div>
 </transition>
 </template>

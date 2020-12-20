@@ -11,7 +11,7 @@ import vswitch from '@/components/switch'
 import notify from '@/components/notify'
 import picker from '@/components/picker'
 import popover from '@/components/popover'
-
+import search from '@/components/search'
 import tabs from '@/components/tabs'
 
 
@@ -28,7 +28,8 @@ const components = {
   notify,
   popover,
   tabs,
-  reportHeadImage
+  reportHeadImage,
+  search
 }
 const prototypes = {
   dialog,

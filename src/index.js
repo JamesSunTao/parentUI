@@ -11,6 +11,7 @@ import vswitch from '@/components/switch'
 import notify from '@/components/notify'
 import picker from '@/components/picker'
 import popover from '@/components/popover'
+import search from '@/components/search'
 import badge from '@/components/badge'
 import nodata from '@/components/nodata'
 import imageView from '@/components/image-view'
@@ -37,6 +38,7 @@ const components = {
   imageView,
   tabs,
   reportHeadImage,
+  search,
   badge,
   rate,
   vbutton,

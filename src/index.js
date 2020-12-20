@@ -1,4 +1,4 @@
-import button from '@/components/button'
+import vbutton from '@/components/button'
 import fadeupMenu from '@/components/fadeup-menu'
 import headerbar from '@/components/headerbar'
 import dialog from '@/components/dialog'
@@ -12,11 +12,19 @@ import notify from '@/components/notify'
 import picker from '@/components/picker'
 import popover from '@/components/popover'
 import search from '@/components/search'
-import tabs from '@/components/tabs'
+import badge from '@/components/badge'
+import nodata from '@/components/nodata'
+import imageView from '@/components/image-view'
 
+import tabs from '@/components/tabs'
+import rate from '@/components/rate'
+
+import list from '@/components/list'
 
 // 报告类组件
 import reportHeadImage from '@/components/reportComponents/report/report-head-image'
+//报告类主题
+import reportThemes from '@/components/reportComponents/themes/theme.vue'
 const components = {
   fadeupMenu,
   headerbar,
@@ -27,9 +35,17 @@ const components = {
   checkboxGroup,
   notify,
   popover,
+  imageView,
   tabs,
   reportHeadImage,
-  search
+  search,
+  badge,
+  rate,
+  vbutton,
+  nodata,
+  list,
+  reportHeadImage,
+  reportThemes
 }
 const prototypes = {
   dialog,
@@ -49,7 +65,6 @@ const install = function (Vue) {
 if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue)
 }
-
 
 export default {
   version: '0.1.6',

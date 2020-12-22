@@ -1,19 +1,18 @@
 <template>
-  <div class="vipkid-nodata">
-    <div class="bgimg" :style="{backgroundImage:'url(' +  bgimg + ')'}">
-
+  <div class="vk-nodata">
+    <div class="vk-nodata-bgimg" :style="{backgroundImage:'url(' +  bgimg + ')'}">
     </div>
-    <p class="title">
-      {{mainTitle}}
+    <p class="vk-nodata-title">
+      {{titleList[0] || '暂无数据'}}
     </p>
-    <p class="sec-title" v-if="showSubtitle">
-      {{subTitle}}
+    <p class="vk-nodata-sec-title" v-if="titleList[1]">
+      {{titleList[1]}}
     </p>
-    <div class="sec-btn"  @click="$emit('subFunction')" v-if="showSubBtn">
-      {{subBtnDesc}}
+    <div class="vk-nodata-sec-btn"  @click="$emit('subFunction')" v-if="buttonList[1]">
+      {{buttonList[1]}}
     </div>
-    <div class="main-btn" @click="$emit('mainFunction')" v-if="showMainBtnStatus">
-      {{mainBtnDesc}}
+    <div class="vk-nodata-main-btn" @click="$emit('mainFunction')" v-if="buttonList[0]">
+      {{buttonList[0] || '返回'}}
     </div>
   </div>
 </template> 
@@ -23,86 +22,74 @@ export default {
   name: "nodata",
   data () {
     return {
-      showMainBtnStatus: false 
     }
   },
   props: {
-    mainTitle: {
-      type: String,
-      default: "暂无数据",
-    },
     bgimg: {
       type: String,
       default: "https://img.vipkidstatic.com/prt/image/tools/upload/xkj60lG2DKynP.gif",
     },
-    showSubtitle: Boolean,
-    showSubBtn: Boolean,
-    showMainBtn: Boolean,
-    subBtnDesc: {
-      type: String,
-      default: "检测一下",
+    titleList: {
+      type: Array,
+      default() {
+        return []
+      }
     },
-    mainBtnDesc: {
-      type: String,
-      default: "刷新",
-    },
-    subTitle: {
-      type: String,
-      default: "副标题",
-    },
-
-  },
-  mounted () {
-    this.showMainBtnStatus = this.showSubBtn ? this.showSubBtn : this.showMainBtn
+    buttonList:{
+      type: Array,
+      default() {
+        return []
+      }
+    }
   },
   methods: {
   }
-};
+}
 </script>
 
 <style lang='stylus' scoped>
-.vipkid-nodata {
+.vk-nodata {
   width 100vw
   overflow hidden
-  height 100vh
   text-align center
-  .bgimg {
+  .vk-nodata-bgimg {
     width 220px
     height 220px
     margin 18vh auto 0
     background url("https://img.vipkidstatic.com/prt/image/tools/upload/xkj60lG2DKynP.gif") center center / 220px 220px no-repeat
   }
-  .title {
+  .vk-nodata-title {
     margin-top -10px
     font-size: 16px
     font-family: PingFangSC, PingFangSC-Regular
     font-weight: 400
     color: #333333
   }
-  .sec-title {
-    font-size: 12px;
-    text-align: center;
-    color: #999999;
+  .vk-nodata-sec-title {
+    font-size: 12px
+    text-align: center
+    color: #999999
     margin-top 20px
   }
-  .main-btn , .sec-btn {
-    height: 32px;
-    border-radius: 18px;
-    min-width: 86px;
+  .vk-nodata-main-btn , .vk-nodata-sec-btn {
+    height: 32px
+    border-radius: 18px
+    min-width: 86px
     line-height 32px
     display inline-block
     padding 0 5px
   }
-  .main-btn {
+  .vk-nodata-main-btn {
     margin-top 10px
-    border: 1px solid #ff6422;
-    color: #ff6422;
+    border: 1px solid #ff6422
+    color: #ff6422
+    font-size: 14px
   }
-  .sec-btn {
-    border: 1px solid #dfdfdf;
-    color: #474747;
+  .vk-nodata-sec-btn {
+    border: 1px solid #dfdfdf
+    color: #474747
     margin-right 18px
+    font-size: 14px
   }
 }
-
 </style>

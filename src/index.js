@@ -15,6 +15,8 @@ import search from '@/components/search'
 import badge from '@/components/badge'
 import nodata from '@/components/nodata'
 import imageView from '@/components/image-view'
+import parentuiRow from '@/components/parentui-row'
+import parentuiCol from '@/components/parentui-col'
 
 import tabs from '@/components/tabs'
 import rate from '@/components/rate'
@@ -45,7 +47,9 @@ const components = {
   nodata,
   list,
   reportHeadImage,
-  reportThemes
+  reportThemes,
+  parentuiRow,
+  parentuiCol
 }
 const prototypes = {
   dialog,

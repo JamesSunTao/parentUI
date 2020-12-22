@@ -79,5 +79,13 @@ export default [
     path: '/imageView',
     name: 'imageView',
     component: resolve => require(['../components/image-view.vue'], resolve),
+  }, {
+    path: '/parentui-row',
+    name: 'parentui-row',
+    component: resolve => require(['../components/parentui-row.vue'], resolve),
+  }, {
+    path: '/parentui-col',
+    name: 'parentui-col',
+    component: resolve => require(['../components/parentui-col.vue'], resolve),
   }
 ]

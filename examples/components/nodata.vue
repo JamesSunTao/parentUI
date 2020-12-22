@@ -1,10 +1,17 @@
 <template>
   <div class="main_content">
-    <nodata title="badge" @mainFunction="mainFunction" showSubBtn showSubtitle @subFunction="subFunction" mainBtnDesc="主按钮" subBtnDesc="副按钮"></nodata>
+    <headerbar title="暂无数据"></headerbar>
+    <nodata title="badge" @mainFunction="mainFunction" :titleList="titleList" :buttonList="btnList" @subFunction="subFunction"></nodata>
   </div>
 </template>
 <script>
 export default {
+  data () {
+    return {
+      btnList: ['返回', '刷新一下'],
+      titleList: ['暂无数据', '这里是副标题']
+    }
+  },
   methods: {
     mainFunction () {
       this.$dialog({

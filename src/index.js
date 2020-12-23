@@ -49,12 +49,12 @@ const components = {
   reportHeadImage,
   reportThemes,
   parentuiRow,
-  parentuiCol
+  parentuiCol,
+  picker
 }
 const prototypes = {
   dialog,
-  toast,
-  picker
+  toast
 }
 
 const install = function (Vue) {

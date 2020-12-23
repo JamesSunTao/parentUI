@@ -101,11 +101,9 @@ export default {
       this.$refs.core.style.backgroundColor = newColor[0]
       this.$refs.item.style.backgroundColor =  newColor[1] || '#fff'
       if(this.verifyColor(this.$refs.core,newColor[0])) {
-        window.console.warn(`${newColor[0]} is not a color`)
         this.$refs.core.style.backgroundColor = '#e1e1e1'
       }
       if(this.verifyColor(this.$refs.item,newColor[1])) {
-        window.console.warn(`${newColor[1]} is not a color`)
         this.$refs.item.style.backgroundColor = '#fff'
       }
     },

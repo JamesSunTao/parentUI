@@ -1,16 +1,16 @@
 <template>
-  <div class="picker-slot" :class="classNames" :style="flexStyle">
-    <div v-if="!divider" ref="wrapper" class="picker-slot-wrapper" :class="{ dragging: dragging }" :style="{ height: contentHeight + 'px' }">
+  <div class="picker-slot" :class="classNames">
+    <div ref="wrapper" class="picker-slot-wrapper" :class="{ dragging: dragging }" :style="{ height: contentHeight + 'px' }">
       <div class="picker-item" v-for="(itemValue, index) in mutatingValues" v-bind:key="index" :class="{ 'picker-selected': itemValue === currentValue, 'disable': itemValue.disable}" :style="{ height: itemHeight + 'px', lineHeight: itemHeight + 'px' }">
         {{ typeof itemValue === 'object' && itemValue[valueKey] ? itemValue[valueKey] : itemValue }}
       </div>
     </div>
-    <div v-if="divider">{{ content }}</div>
   </div>
 </template>
 
 <style lang='stylus' scoped>
   .picker-slot {
+    flex: 1
     font-size: 18px
     overflow: hidden
     position: relative
@@ -27,16 +27,6 @@
 
   .picker-slot.picker-slot-right {
     text-align: right
-  }
-
-  .picker-slot.picker-slot-divider {
-    color: #000
-    display: -webkit-box
-    display: -moz-box
-    // display: -webkit-flex
-    display: -ms-flexbox
-    display: flex
-    align-items: center
   }
 
   .picker-slot-wrapper {
@@ -105,7 +95,7 @@
 <script>
 import draggable from './draggable'
 import translateUtil from './translate'
-import { once, addClass, removeClass } from './dom'
+import { once, addClass, removeClass } from './util.js'
 import Vue from 'vue'
 if (!Vue.prototype.$isServer) {
   require('raf.js')
@@ -145,15 +135,10 @@ export default {
       type: Boolean,
       default: false
     },
-    divider: {
-      type: Boolean,
-      default: false
-    },
     textAlign: {
       type: String,
       default: 'center'
     },
-    flex: {},
     className: {},
     content: {},
     itemHeight: {
@@ -193,10 +178,6 @@ export default {
 
       let textAlign = this.textAlign || 'center'
       resultArray.push(PREFIX + textAlign)
-
-      if (this.divider) {
-        resultArray.push(PREFIX + 'divider')
-      }
 
       if (this.className) {
         resultArray.push(this.className)
@@ -285,7 +266,6 @@ export default {
     },
 
     updateRotate: function(currentTranslate, pickerItems) {
-      if (this.divider) return
       let dragRange = this.dragRange
       let wrapper = this.$refs.wrapper
       let currenttranslate = currentTranslate
@@ -451,11 +431,8 @@ export default {
 
   mounted() {
     this.ready = true
-    if (!this.divider) {
-      this.initEvents()
-      this.doOnValueChange()
-    }
-
+    this.initEvents()
+    this.doOnValueChange()
     if (this.rotateEffect) {
       this.doOnValuesChange()
     }

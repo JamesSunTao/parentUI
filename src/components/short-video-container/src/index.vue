@@ -63,7 +63,8 @@ export default {
       videoLoading: false,
       userPlaying: false,
       startTime: 0,
-      clickCount: 0
+      clickCount: 0,
+      autoplay: false
     }
   },
   watch: {

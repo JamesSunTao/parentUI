@@ -58,7 +58,6 @@ export default {
       this.activeIndex = index
       this.curEvaluated = true
       this.$emit('starFun', index+1)
-      window.console.log(`当前选择:${index+1}`);
     }
   }
 }

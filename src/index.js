@@ -43,12 +43,12 @@ const components = {
   nodata,
   list,
   reportHeadImage,
-  reportThemes
+  reportThemes,
+  picker
 }
 const prototypes = {
   dialog,
-  toast,
-  picker
+  toast
 }
 
 const install = function (Vue) {

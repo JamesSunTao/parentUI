@@ -4,11 +4,11 @@
     <div class="content">
       <div class="content-item">
         <div class="info">默认激活态</div>
-        <search v-model="value" @input="fn" @focus="fn1" @blur="fn2" @startSearch="fn3" @delete="fn5" @cancel="fn6"></search>
+        <search v-model="value" @focus="fn1" @blur="fn2" @startSearch="fn3" @delete="fn5" @cancel="fn6"></search>
       </div>
       <div class="content-item">
         <div class="info">不展示背景</div>
-        <search v-model="value" @input="fn" @focus="fn1" @blur="fn2"  :supportMark="false" @startSearch="fn3" @delete="fn5" @cancel="fn6"></search>
+        <search v-model="value" @focus="fn1" @blur="fn2"  :supportMark="false" @startSearch="fn3" @delete="fn5" @cancel="fn6"></search>
       </div>
     </div> 
   </div>
@@ -23,9 +23,6 @@ export default {
     }
   },
   methods: {
-    fn() {
-      console.log(value)
-    },
     fn1() {
       this.$toast({text: '聚焦事件开启'})
     },

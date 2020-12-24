@@ -1,13 +1,13 @@
 <template>
   <button
     :class="[
-      'ui-button',
-      `ui-button__${type}`,
-      `ui-button__${size}`,
+      'vk-button',
+      `vk-button__${type}`,
+      `vk-button__${size}`,
       {
-        'ui-button__plain': plain,
-        'ui-button__disabled': disabled || loading,
-        'ui-button__weak': weak,
+        'vk-button__plain': plain,
+        'vk-button__disabled': disabled || loading,
+        'vk-button__weak': weak,
       },
     ]"
     :style="getStyle()"
@@ -15,12 +15,12 @@
     @click.capture="onClick"
     ref="button"
   >
-    <div class="ui-button__content">
-      <div v-if="loading" class="ui-loading ui-button__loading"></div>
-      <span v-if="loadingText" class="ui-button__text">
+    <div class="vk-button__content">
+      <div v-if="loading" class="vk-loading vk-button__loading"></div>
+      <span v-if="loadingText" class="vk-button__text">
         {{ loadingText }}
       </span>
-      <span v-else class="ui-button__text">
+      <span v-else class="vk-button__text">
         <slot></slot>
       </span>
     </div>
@@ -83,7 +83,7 @@ export default {
     -webkit-transform: rotate(0deg)
   100%
     -webkit-transform: rotate(360deg)
-.ui-button
+.vk-button
   position: relative
   display: inline-block
   box-sizing: border-box

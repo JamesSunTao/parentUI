@@ -39,11 +39,11 @@ export default {
       return ret
     },
     class() {
-      let classList = ['parentui-row']
+      let classList = ['vk-parentui-row']
       if (this.type) {
-        classList.push(`type-${this.type}`)
-        this.type == 'flex' && this.justify && classList.push(`justify-${this.justify}`)
-        this.type == 'flex' && this.align && classList.push(`align-${this.align}`)
+        classList.push(`vk-type-${this.type}`)
+        this.type == 'flex' && this.justify && classList.push(`vk-justify-${this.justify}`)
+        this.type == 'flex' && this.align && classList.push(`vk-align-${this.align}`)
       }
       return classList
     },
@@ -51,28 +51,30 @@ export default {
 }
 </script>
 <style lang="stylus" scoped>
-.parentui-row
+.vk-parentui-row
   &:after
-    display: table
+    display: block
+    width:0
+    height:0
     clear: both
     content: ''
-.parentui-row.type-flex
+.vk-parentui-row.vk-type-flex
   display: flex
   flex-wrap: wrap
   &:after
     display: none
-.justify-start
+.vk-justify-start
   justify-content: flex-start
-.justify-end
+.vk-justify-end
   justify-content: flex-end
-.justify-space-around
+.vk-justify-space-around
   justify-content: space-around
-.justify-space-between
+.vk-justify-space-between
   justify-content: space-between
-.align-top
+.vk-align-top
   align-items: flex-start
-.align-bottom
+.vk-align-bottom
   align-items: flex-end
-.align-center
+.vk-align-center
   align-items: center
 </style>

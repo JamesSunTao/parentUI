@@ -67,6 +67,9 @@ export default {
          return this.theme === 'light'
       }
   },
+  beforeDestroy(){
+    console.log(this.$refs.content && this.$refs.content.remove()  )
+  },
   methods: {
     positionContent() {
        document.body.appendChild(this.$refs.content)
@@ -134,7 +137,7 @@ export default {
   },
   created() {
       this.autoShow && this.open()
-  }
+  },
 };
 </script>
 

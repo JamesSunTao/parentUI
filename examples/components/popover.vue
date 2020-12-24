@@ -28,7 +28,7 @@
         <popover class="aa" type="multi" label="啊我是文字啊啊啊我是文字啊啊啊我是文字啊啊我是文字啊">
           <span class="btn" slot="button">点我</span>
         </popover>
-        <popover class="aa" type="multi"  position_x="right" label="啊我是文字啊啊啊我是文字啊啊啊我是文字啊啊我是文字啊">
+        <popover class="aa" position_x="right" label="啊我字是文字啊">
           <span class="btn" slot="button">点我</span>
         </popover>
         <popover class="aa" type="multi"  position_y="bottom"  label="啊我是文字啊啊啊我是文字啊啊啊我是文字啊啊我是文字啊">

@@ -1,17 +1,17 @@
 <template>
-<div class="star-warp">
-  <div class="star-box">
+<div class="vk-star-warp">
+  <div class="vk-star-box">
     <slot name="rate_title"></slot>
     <template class="star">
       <slot name="rate_intro"></slot>
     </template>
-    <div class="star-content">
-      <div class="star-pic" v-for="(sItem, index) in startList" @click="chooseType(sItem,index)" :key="index">
+    <div class="vk-star-content">
+      <div class="vk-star-pic" v-for="(sItem, index) in startList" @click="chooseType(sItem,index)" :key="index">
         <img :src="sItem.starUrl" :class="{'filter': index != activeIndex && curEvaluated}">
         <p v-if="!curEvaluated">{{sItem.starText}}</p>
       </div>
     </div>
-    <p class="star-result" v-if="curEvaluated">{{startList[`${activeIndex}`].starText}}</p>
+    <p class="vk-star-result" v-if="curEvaluated">{{startList[`${activeIndex}`].starText}}</p>
   </div>
 </div>
 </template>
@@ -64,10 +64,10 @@ export default {
 </script>
 <style lang='stylus' scoped>
 @import '../../../style/var.styl'
-.star-warp
+.vk-star-warp
   box-sizing: border-box
   margin-bottom: 24px
-  .star-box
+  .vk-star-box
     box-sizing: border-box
     background: $vk-bgc-while-pure
     padding: 16px
@@ -100,9 +100,9 @@ export default {
       font-size: 12px
       padding-top: 6px
       text-align: left 
-    .star-content
+    .vk-star-content
       display: flex
-      .star-pic
+      .vk-star-pic
         flex: 1
         text-align: center
         box-sizing: border-box
@@ -117,7 +117,7 @@ export default {
           color: $vk-font-color-text
           margin: 12px 0 0 0
           font-size: 12px
-    .star-result
+    .vk-star-result
       text-align: center
       font-size: 12px
       font-weight: 400

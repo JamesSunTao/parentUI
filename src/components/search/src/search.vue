@@ -1,29 +1,29 @@
 <template>
   <div
-    class="ui-search"
+    class="vk-search"
     :class="{ selected: showMark }"
     @click="closeMark"
     ref="search"
   >
-    <div class="ui-search_wrapper" ref="searchwrapper">
-      <div class="ui-search_inputWrapper">
+    <div class="vk-search_wrapper" ref="searchwrapper">
+      <div class="vk-search_inputWrapper">
         <div class="search_icon"></div>
         <input
-          class="ui-search__input"
+          class="vk-search__input"
           ref="input"
           type="search"
-          placeholder="搜索"
+          :placeholder="placeholder"
           @focus="focusHandle"
           v-model="model"
           @blur="blurHandle"
           @keypress="startSearch"
         />
-        <div class="delete" v-show="model" ref="delete"  @click="deleteHandle">
-          <div class="delete-left"></div>
-          <div class="delete-right"></div>
+        <div class="vk-search_delete" v-show="model" ref="delete"  @click="deleteHandle">
+          <div class="vk-search_delete-left"></div>
+          <div class="vk-search_delete-right"></div>
         </div>
       </div>
-      <div class="cancel" @click="cancel">取消</div>
+      <div class="cancel" @click="cancel">{{ cancelText }}</div>
     </div>
 
   </div>
@@ -37,7 +37,15 @@ export default {
     label: {},
     supportMark: {
       type: Boolean,
-      default: true
+      default: false
+    },
+    placeholder: {
+      type: String,
+      default: '搜索'
+    },
+    cancelText: {
+      type: String,
+      default: '取消'
     }
   },
   data() {
@@ -105,21 +113,21 @@ export default {
   right: 0
   bottom: 0
   background-color: rgba(0,0,0,.5)
-.ui-search_wrapper
+.vk-search_wrapper
   height: 44px
   background-color: $vk-bgc-white
   display: flex
   z-index:2
   padding: 4px 16px
   z-index:100
-  .delete
+  .vk-search_delete
    width: 16px;
    height: 16px;
    background: #d4d4d4;
    border-radius 50%
    position relative
    margin-right: 10px
-   .delete-left
+   .vk-search_delete-left
     position absolute
     top 50%
     left 50%
@@ -127,7 +135,7 @@ export default {
     width 6px
     height 1px
     background-color #fff
-   .delete-right
+   .vk-search_delete-right
     position absolute
     top 50%
     left 50%
@@ -146,7 +154,7 @@ export default {
     height: 100vh
     opacity: 0.5
     background-color: #000
-  .ui-search_inputWrapper
+  .vk-search_inputWrapper
     border: 1px solid #eee
     display: flex
     flex-grow: 1
@@ -160,7 +168,7 @@ export default {
       height: 12px
       background:url('../img/search.png') center / 100% 100% no-repeat
       margin: 0 7px 0 15px
-    .ui-search__input
+    .vk-search__input
       display: block
       box-sizing: border-box
       width: calc(100% - 59px)

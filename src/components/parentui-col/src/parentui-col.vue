@@ -28,9 +28,9 @@ export default {
   render(h) {
     return h(this.tag, {
       class: [
-        'parentui-col',
-        `parentui-col-${this.span}`,
-        `offset-${this.offset}`
+        'vk-parentui-col',
+        `vk-parentui-col-${this.span}`,
+        `vk-offset-${this.offset}`
       ],
       style: this.style
     }, this.$slots.default)
@@ -39,11 +39,11 @@ export default {
 </script>
 <style lang="stylus" scoped>
 for row in (1..24)
-  .parentui-col-{row}
+  .vk-parentui-col-{row}
     width: (row/24)*100%
-  .offset-{row}
+  .vk-offset-{row}
     margin-left: (row/24)*100%
-.parentui-col
+.vk-parentui-col
   box-sizing: border-box
   float: left
 </style>

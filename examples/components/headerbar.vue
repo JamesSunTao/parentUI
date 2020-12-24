@@ -23,6 +23,10 @@
       我
     </div>
   </headerbar>
+  <headerbar style="top:300px" title='自定义left'>
+    <div class="slot-left" slot="left"></div>
+  </headerbar>
+  <headerbar style="top:350px" title='透明background' needTransparent></headerbar>
 </div>
 </template>
 <script>
@@ -65,3 +69,7 @@ export default {
   }
 }
 </script>
+<style lang="stylus" scoped>
+.slot-left
+  background: url('../assets/images/hint.png') center no-repeat
+</style>

@@ -57,7 +57,7 @@ export default {
     width 13px
     position absolute
     top 30%
-    right 15%
+    right 12%
     background-image url('../../asstes/images/hint.png')
     position absolute
     background-size cover

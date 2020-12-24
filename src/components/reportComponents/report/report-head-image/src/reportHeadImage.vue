@@ -22,7 +22,7 @@ export default {
         left: 20,
         avatarUrl: headImage,
         userName: 'name',
-        explain: '',
+        explain: 'aaa',
         score: 'A',
         title: '这是一级标题',
         subTitle: '这是二级标题',

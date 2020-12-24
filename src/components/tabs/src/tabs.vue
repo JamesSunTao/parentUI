@@ -1,5 +1,5 @@
 <template>
-  <div class="tabs-warp">
+  <div class="vk-tabs-warp">
     <div :class="[scrollspy ? 'scroll-spy':'' ,tapsType]">
       <div class="vk-tab" :class="[index == curIndex?'active':'']" v-for="(item, index)  in tabsData" @click.stop="clickTab(index)" :key="index">
         <span>{{item.tabName}}</span>

@@ -26,21 +26,7 @@ export default {
     reportData: {
       type: Array,
       default: () => {
-        return [
-          {
-          childType: 'report-head-image', //组件名称
-          data: {
-            firstTitle: '这是测试一级标题文111案', // 一级标题
-            secondTitle: '我是耳机标题的测试文案', // 二级标题
-            left: '20', // 头像相对于左边的距离 单位PX
-            hintText: '提示文案', // 说明文案，如果说明为空，不显示
-            score: 'A+', //成绩，目前支持 a/aPuls/b/bPuls/c/cPuls
-            headImage: 'https://media.vipkidstatic.com/homework/qc/%E9%BB%84%E5%8F%91%E7%94%B7%E5%AD%A91572942668977.png', // 头像链接
-            name: 'jack' //学生名字
-          },
-          type: 'reportHeadImage' //组件类型 组件唯一标示
-        }
-        ]
+        return []
       }
     }
   }

@@ -22,6 +22,7 @@ import tabs from '@/components/tabs'
 import rate from '@/components/rate'
 
 import list from '@/components/list'
+import pullRefresh from '@/components/pullRefresh'
 
 // 报告类组件
 import reportHeadImage from '@/components/reportComponents/report/report-head-image'
@@ -50,7 +51,8 @@ const components = {
   reportThemes,
   parentuiRow,
   parentuiCol,
-  picker
+  picker,
+  pullRefresh
 }
 const prototypes = {
   dialog,

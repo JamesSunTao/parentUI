@@ -87,5 +87,9 @@ export default [
     path: '/parentui-col',
     name: 'parentui-col',
     component: resolve => require(['../components/parentui-col.vue'], resolve),
+  }, {
+    path: '/pullRefresh',
+    name: 'pullRefresh',
+    component: resolve => require(['../components/pullRefresh.vue'], resolve),
   }
 ]

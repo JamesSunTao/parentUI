@@ -1,8 +1,8 @@
 {
   "name": "parent-ui",
-  "version": "0.1.6",
+  "version": "1.0.0",
   "description": "parent UI",
-  "author": "qupeng <qupeng@vipkid.com.com>",
+  "author": "vipkid 家长中心前端组",
   "private": true,
   "main": "./lib/index.js",
   "scripts": {

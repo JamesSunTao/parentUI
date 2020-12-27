@@ -1,6 +1,9 @@
 <template>
-<div class='vfe-ui-header'>
+<div class='vfe-ui-header' :style="getStyle">
   <div class='header-left' @click="back" v-if="isHeaderLeftShow && !$slots.left"></div>
+  <div class="slot-left" v-if="$slots.left" @click="back">
+    <slot name='left'></slot>
+  </div>
   <div class='header-middle' v-if="typeof title === 'string'">{{title}}</div>
   <div class='header-middle' v-else>
     <div :style="setWidth" v-for="item in title" :key="item.mark" :class="['tab', {active: item.active}]" @click="clickHandle(item)">
@@ -8,7 +11,6 @@
     </div>
   </div>
   <slot name='right'></slot>
-  <slot class="slot-left" name='left'></slot>
 </div>
 </template>
 <script>
@@ -29,11 +31,21 @@ export default {
     isHeaderLeftShow: {
       type: Boolean,
       default: true
+    },
+    needTransparent: {
+      type: Boolean
     }
   },
   computed: {
     setWidth() {
       return {'width': (1/this.title.length) * 100 + '%'}
+    },
+    getStyle() {
+      const style = {}
+      if(this.needTransparent) {
+        style.backgroundColor = 'transparent'
+      }
+      return style
     }
   },
   methods: {
@@ -105,6 +117,8 @@ export default {
     background-size: 50%
   .slot-left
     position: absolute
+    width: h
+    height: h
     left: 4px
   .header-right
     position: absolute

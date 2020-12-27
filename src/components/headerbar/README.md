@@ -6,6 +6,7 @@
 |title|title文案，为数组title之间时可切换 |String ｜ array |-|VIPKID-在线青少儿英语|
 |isHeaderLeftShow | 是否展示返回那妞|Boolean|false/true|true|
 |backfn | 自定义返回按钮，如不设置则调用默认返回|Function|-|-|
+|needTransparent | 透明background | boolean | true/false | false |
 
 ### title
 |  参数 | 说明 | 类型  | 可选值  | 默认值  |

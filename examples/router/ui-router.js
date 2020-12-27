@@ -41,12 +41,55 @@ export default [
     component: resolve => require(['../components/checkbox-group.vue'], resolve),
   },
   {
+    path: '/search',
+    name: 'search',
+    component: resolve => require(['../components/search.vue'], resolve)
+  }, 
+  {
     path: '/popover',
     name: 'popover',
     component: resolve => require(['../components/popover.vue'], resolve)
-  }, {
+  },
+  {
     path: '/tabs',
     name: 'tabs',
     component: resolve => require(['../components/tabs.vue'], resolve),
+  }, {
+    path: '/badge',
+    name: 'badge',
+    component: resolve => require(['../components/badge.vue'], resolve),
+  },
+  {
+    path: '/rate',
+    name: 'rate',
+    component: resolve => require(['../components/rate.vue'], resolve),
+  }, {
+    path: '/vbutton',
+    name: 'vbutton',
+    component: resolve => require(['../components/vbutton.vue'], resolve),
+  }, {
+    path: '/nodata',
+    name: 'nodata',
+    component: resolve => require(['../components/nodata.vue'], resolve),
+  }, {
+    path: '/list',
+    name: 'list',
+    component: resolve => require(['../components/list.vue'], resolve),
+  }, {
+    path: '/imageView',
+    name: 'imageView',
+    component: resolve => require(['../components/image-view.vue'], resolve),
+  }, {
+    path: '/parentui-row',
+    name: 'parentui-row',
+    component: resolve => require(['../components/parentui-row.vue'], resolve),
+  }, {
+    path: '/parentui-col',
+    name: 'parentui-col',
+    component: resolve => require(['../components/parentui-col.vue'], resolve),
+  }, {
+    path: '/pullRefresh',
+    name: 'pullRefresh',
+    component: resolve => require(['../components/pullRefresh.vue'], resolve),
   }
 ]

@@ -51,9 +51,10 @@ export default {
       right 12px
       color #c5c5c5
     a
-      color: #333;
-      text-decoration: none;
-      display: block;
-      width: 100%;
-      padding: 12px;
+      color: #333
+      text-decoration: none
+      display: block
+      width: 100%
+      box-sizing: border-box
+      padding: 12px
   </style>

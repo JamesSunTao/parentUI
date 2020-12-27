@@ -14,7 +14,6 @@
     </span>
   </div>
 </template>
-
 <script>
 export default {
   name: "ui-popover",
@@ -67,6 +66,9 @@ export default {
       isBgWhite() {
          return this.theme === 'light'
       }
+  },
+  beforeDestroy(){
+    console.log(this.$refs.content && this.$refs.content.remove()  )
   },
   methods: {
     positionContent() {
@@ -135,7 +137,7 @@ export default {
   },
   created() {
       this.autoShow && this.open()
-  }
+  },
 };
 </script>
 

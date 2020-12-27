@@ -1,11 +1,11 @@
 <template lang="pug">
-  .vk-report-head-image-container
-    .vk-report-head-image(:style="headProps.headStyle")
-      headPort(:name="headProps.name" :headImage="headProps.headImage")
-    headAchievement(:rote="headProps.rote" :hint-text="headProps.hintText")
+  .vk-report.vk-report-head-image-container
+    .vk-report-head-image(:style="headStyle")
+      headPort(:name="headProps.userName" :headImage="headProps.avatarUrl")
+    headAchievement(:rote="headProps.score" :hint-text="headProps.explain")
     .vk-report-head-title
-      headFirstTitle(:title="headProps.firstTitle")
-      headSecondTitle(:title="headProps.secondTitle")
+      headFirstTitle(:title="headProps.title")
+      headSecondTitle(:title="headProps.subTitle")
 </template>
 
 <script>
@@ -20,13 +20,13 @@ export default {
     return {
       headProps: {
         left: 20,
-        headImage: headImage,
-        name: 'name',
-        hintText: '',
-        rote: 'aPuls',
-        firstTitle: '这是一级标题',
-        secondTitle: '这是二级标题',
-      }
+        avatarUrl: headImage,
+        userName: 'name',
+        explain: '',
+        score: 'A',
+        title: '这是一级标题',
+        subTitle: '这是二级标题',
+      },
     }
   },
   props: {
@@ -35,16 +35,19 @@ export default {
       default: () => {
         return null
       }
-    }
+    },
+    reportProp: Object
   },
   created() {
     if (this.headPropsDes) {
       this.headProps = Object.assign(this.headProps, this.headPropsDes)
+    } else {
+      this.headProps = Object.assign(this.headProps, this.reportProp)
     }
   },
   computed: {
     headStyle() {
-      return {'left': this.left + 'px'}
+      return {'left': this.headProps.left + 'px'}
     }
   },
   components: {

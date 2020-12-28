@@ -26,7 +26,6 @@ import pullRefresh from '@/components/pullRefresh'
 
 // 报告类组件
 import reportHeadImage from '@/components/reportComponents/report/report-head-image'
-//报告类主题
 import reportThemes from '@/components/reportComponents/themes/theme.vue'
 const components = {
   fadeupMenu,

@@ -1,5 +1,5 @@
 <template>
-  <div class="vk-nodata">
+  <div class="vk-nodata" :style="{height:_height}">
     <div class="vk-nodata-main">
       <div class="vk-nodata-bgimg" :style="{backgroundImage:'url(' +  bgimg + ')'}">
       </div>
@@ -20,6 +20,7 @@
 </template> 
 
 <script>
+import { addUnit } from "../../../utils/_format.js";
 export default {
   name: "nodata",
   data () {
@@ -30,6 +31,9 @@ export default {
     bgimg: {
       type: String,
       default: "https://img.vipkidstatic.com/prt/image/tools/upload/xkj60lG2DKynP.gif",
+    },
+    height: {
+      type: [String, Number]
     },
     titleList: {
       type: Array,
@@ -44,6 +48,11 @@ export default {
       }
     }
   },
+  computed : { 
+    _height () {
+      return addUnit(this.height)
+    }
+  },
   methods: {
   }
 }
@@ -54,7 +63,7 @@ export default {
   width 100vw
   overflow hidden
   text-align center
-  height 100%
+  height calc(100vh - 44px)
   .vk-nodata-main {
     position relative
     top 48%

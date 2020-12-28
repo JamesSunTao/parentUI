@@ -124,10 +124,6 @@ export default {
     &.vk-push-loading
       background-image: url('../img/pedding.png')
 @keyframes close-animation
-  33%
-    margin-top: -33.33px
-  66%
-    margin-top: -66.66px
   100%
     margin-top: -100px
 </style>

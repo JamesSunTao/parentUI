@@ -19,7 +19,6 @@
     "vk-hybrid": "http://registry.vnpm.vipkid.com.cn/vk-hybrid/download/vk-hybrid-3.0.25.tgz"
   },
   "devDependencies": {
-    "@parent/parent-jsdk": "^1.2.5",
     "@babel/core": "^7.7.4",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/plugin-proposal-decorators": "^7.8.3",
@@ -32,11 +31,12 @@
     "@babel/polyfill": "^7.8.7",
     "@babel/preset-env": "7.7.4",
     "@babel/runtime": "^7.9.6",
-    "autoprefixer": "9.5.1",
+    "@parent/parent-jsdk": "^1.2.5",
+    "autoprefixer": "^9.5.1",
     "babel-eslint": "^10.1.0",
     "babel-loader": "8.0.6",
-    "core-js": "3.5.0",
     "chalk": "^4.1.0",
+    "core-js": "3.5.0",
     "css-loader": "^2.1.1",
     "friendly-errors-webpack-plugin": "^1.7.0",
     "globby": "^11.0.1",
@@ -74,7 +74,10 @@
   "browserslist": [
     "> 1%",
     "last 2 versions",
-    "not ie <= 8"
+    "not ie <= 8",
+    "Chrome >= 39",
+    "iOS >= 8",
+    "android >= 5.0"
   ],
   "style": "lib/theme-chalk/index.css"
 }

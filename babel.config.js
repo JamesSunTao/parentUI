@@ -1,4 +1,4 @@
-{
+module.exports = {
   "presets": [
     [
       "@babel/preset-env",
@@ -7,7 +7,8 @@
           "> 1%",
           "not ie <= 1",
           "Chrome >= 39",
-          "iOS >= 9"
+          "iOS >= 8",
+          "android >= 5.0"
         ],
         "corejs": 3,
         "modules": false,

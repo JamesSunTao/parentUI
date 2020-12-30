@@ -5,7 +5,7 @@
         <div v-show="!closeable" class="close" @click="close"></div>
         <div class="symbol" ref="symbol"></div>
     </div>
-    <div v-else-if="visiable && $slots.default " style="flex-direction: column" :class="{[`position-${position_y}`]:true,[`position-${position_x}`]:true,light:isBgWhite}" class="content"  ref="content">
+    <div v-else-if="visiable && $slots.default " :class="{[`position-${position_y}`]:true,[`position-${position_x}`]:true,light:isBgWhite}" class="content"  ref="content">
         <slot></slot>
         <div class="symbol" ref="symbol"></div>
     </div>
@@ -158,6 +158,7 @@ export default {
     font-size: $vk-font-size-sm
     word-break: break-all
     max-width: 260px
+    flex-direction: column
     padding: 9px 10px 9px 12px
   .label
     margin-right: 5px

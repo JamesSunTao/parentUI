@@ -1,8 +1,7 @@
 var exportObj = {}
-import Vue from 'vue'
-if (!Vue.prototype.$isServer) {
+if (true) {
   let docStyle = document.documentElement.style
-  let engine
+  let engine = ''
   let translate3d = false
 
   if (window.opera && Object.prototype.toString.call(opera) === '[object Opera]') {
@@ -25,7 +24,6 @@ if (!Vue.prototype.$isServer) {
   let transformStyleName = cssPrefix + 'transform'
   let transitionProperty = vendorPrefix + 'Transition'
   let transitionStyleName = cssPrefix + 'transition'
-  let transitionEndProperty = vendorPrefix.toLowerCase() + 'TransitionEnd'
 
   if (helperElem.style[perspectiveProperty] !== undefined) {
     translate3d = true
@@ -86,10 +84,8 @@ if (!Vue.prototype.$isServer) {
     transformStyleName: transformStyleName,
     transitionProperty: transitionProperty,
     transitionStyleName: transitionStyleName,
-    transitionEndProperty: transitionEndProperty,
     getElementTranslate: getTranslate,
     translateElement: translateElement,
-    cancelTranslateElement: cancelTranslateElement
   }
 }
 

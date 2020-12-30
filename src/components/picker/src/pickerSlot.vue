@@ -131,10 +131,6 @@ export default {
       default: 5
     },
     valueKey: String,
-    rotateEffect: {
-      type: Boolean,
-      default: false
-    },
     textAlign: {
       type: String,
       default: 'center'
@@ -171,10 +167,6 @@ export default {
     classNames() {
       const PREFIX = 'picker-slot-'
       let resultArray = []
-
-      if (this.rotateEffect) {
-        resultArray.push(PREFIX + 'absolute')
-      }
 
       let textAlign = this.textAlign || 'center'
       resultArray.push(PREFIX + textAlign)
@@ -302,20 +294,6 @@ export default {
       })
     },
 
-    planUpdateRotate: function() {
-      var el = this.$refs.wrapper
-      cancelAnimationFrame(this.animationFrameId)
-
-      this.animationFrameId = requestAnimationFrame(() => {
-        this.updateRotate()
-      })
-
-      once(el, translateUtil.transitionEndProperty, () => {
-        cancelAnimationFrame(this.animationFrameId)
-        this.animationFrameId = null
-      })
-    },
-
     initEvents() {
       var el = this.$refs.wrapper
       var dragState = {}
@@ -351,9 +329,6 @@ export default {
 
           prevTranslate = translate
 
-          if (this.rotateEffect) {
-            this.updateRotate(prevTranslate, pickerItems)
-          }
         },
 
         end: (event) => {
@@ -400,9 +375,6 @@ export default {
 
             this.currentValue = this.translate2Value(translate)
 
-            if (this.rotateEffect) {
-              this.planUpdateRotate()
-            }
           })
 
           dragState = {}
@@ -416,26 +388,12 @@ export default {
 
       translateUtil.translateElement(wrapper, null, this.value2Translate(value))
     },
-
-    doOnValuesChange() {
-      var el = this.$el
-      var items = el.querySelectorAll('.picker-item')
-      new Array().forEach.call(items, (item, index) => {
-        translateUtil.translateElement(item, null, this.itemHeight * index)
-      })
-      if (this.rotateEffect) {
-        this.planUpdateRotate()
-      }
-    }
   },
 
   mounted() {
     this.ready = true
     this.initEvents()
     this.doOnValueChange()
-    if (this.rotateEffect) {
-      this.doOnValuesChange()
-    }
   },
 
   watch: {
@@ -447,17 +405,9 @@ export default {
       if (this.valueIndex === -1) {
         this.currentValue = (val || [])[0]
       }
-      if (this.rotateEffect) {
-        this.$nextTick(() => {
-          this.doOnValuesChange()
-        })
-      }
     },
     currentValue(val) {
       this.doOnValueChange()
-      if (this.rotateEffect) {
-        this.planUpdateRotate()
-      }
       this.$emit('input', val)
       this.dispatch('picker', 'slotValueChange', this)
     },

@@ -10,9 +10,9 @@
       <p class="description" v-if="description">{{description}}</p>
     </div>
     <div class="right-bannel inline-block">
-      <span class="right-icon" v-if="!isRightSlot"></span>
+      <span class="right-icon" v-if="!isRightSlot" />
       <span class="right-slot" v-if="isRightSlot">
-        <slot name="right-slot" ></slot>
+        <slot name="right-slot" />
       </span>
     </div>
   </div>
@@ -29,8 +29,8 @@ export default {
     description: String, // 说明
   },
   computed: {
-    isRightSlot: function () {
-      return this.$scopedSlots['right-slot']
+    isRightSlot () {
+      return this.$slots['right-slot']
     }
   },
   methods: {

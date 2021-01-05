@@ -38,7 +38,7 @@ p
     &::after
       content: ''
       display: inline-block
-      border-bottom: 1px solid #d5d8db
+      border-bottom: 1px solid #edeff2
       position: absolute
       bottom: 0
       left: 17px

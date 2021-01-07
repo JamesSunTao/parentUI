@@ -42,7 +42,12 @@ export default {
       }
     },
     updateTime(e) {
-      this.isPlaying = e.target.currentTime !== this.$refs.au.duration
+      if(this.$refs.au.paused){
+        this.isPlaying = false 
+      } else {
+        this.isPlaying = e.target.currentTime !== this.$refs.au.duration
+      }
+      
     },
     autoPlay() {
       if(!this.$refs.au.paused){

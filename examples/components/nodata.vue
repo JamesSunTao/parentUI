@@ -9,7 +9,7 @@ export default {
   data () {
     return {
       btnList: ['返回', '刷新一下'],
-      titleList: ['暂无数据', '这里是副标题']
+      titleList: ['暂无数据', '这里是副标题</br>这里也是副标题']
     }
   },
   methods: {

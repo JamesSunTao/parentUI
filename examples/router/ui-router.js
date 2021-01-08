@@ -91,5 +91,14 @@ export default [
     path: '/pullRefresh',
     name: 'pullRefresh',
     component: resolve => require(['../components/pullRefresh.vue'], resolve),
-  }
+  }, {
+    path: '/autoplay',
+    name: 'autoplay',
+    component: resolve => require(['../components/autoplay.vue'], resolve),
+  }, {
+    path: '/scrollNumber',
+    name: 'scrollNumber',
+    component: resolve => require(['../components/scrollNumber.vue'], resolve),
+  },
+  
 ]

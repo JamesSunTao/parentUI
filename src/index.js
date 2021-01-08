@@ -14,6 +14,8 @@ import popover from '@/components/popover'
 import search from '@/components/search'
 import badge from '@/components/badge'
 import nodata from '@/components/nodata'
+import autoplay from '@/components/autoplay'
+import scrollNumber from '@/components/scrollNumber'
 import imageView from '@/components/image-view'
 import parentuiRow from '@/components/parentui-row'
 import parentuiCol from '@/components/parentui-col'
@@ -51,7 +53,9 @@ const components = {
   parentuiRow,
   parentuiCol,
   picker,
-  pullRefresh
+  pullRefresh,
+  autoplay,
+  scrollNumber
 }
 const prototypes = {
   dialog,

@@ -39,7 +39,14 @@ export default {
       this.$toast({'text': '最长最长文案不超过14个字字字个字字字个字字字字个字最长最长文案不超过14个字字字个字字字个字字字字个字'})
     },
     handleShortText () {
-      this.$toast({'text': '短文案提示'})
+      this.$toast({
+        'text': '短文案提示',
+        cb: () => {
+          this.$dialog({
+            title: '关闭了'
+          })
+        }
+      })
     },
   }
 }

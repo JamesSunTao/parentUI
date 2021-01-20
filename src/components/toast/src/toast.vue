@@ -19,6 +19,7 @@ export default {
   },
   mounted() {
     setTimeout(() => {
+      typeof this.cb === 'function' && this.cb()
       this.$destroy(true)
       this.$el.parentNode.removeChild(this.$el)
     }, this.timeout)

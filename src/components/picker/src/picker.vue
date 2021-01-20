@@ -1,6 +1,6 @@
 <template>
 <transition name="picker">
-  <div class="vk-picker-cover" v-if="visible">
+  <div class="vk-picker-cover" v-if="visible" v-scrollFixed>
     <div class="vk-picker-mask" @touchmove.prevent="stopScroll" @click.stop="closePicker"></div>
     <div class="vk-picker-menu" style="height: 272px">
       <div class="vk-picker-menu-li vk-picker-title">
@@ -31,8 +31,11 @@
 import pickerslot from './pickerSlot.vue'
 import { newAddress } from '@parent/parent-jsdk'
 import { throws } from 'assert'
+import Vue from 'vue'
+import scrollFixedPlugin from '../../../utils/_scrollFixed.js'
 import { numberRange, addZero, getMonthDay} from './util.js'
 const COUNTRYLIST = newAddress.data
+Vue.use(scrollFixedPlugin)
 const typeMapping = {
   date: [{
     values: [],

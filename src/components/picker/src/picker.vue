@@ -1,6 +1,6 @@
 <template>
 <transition name="picker">
-  <div class="vk-picker-cover" v-if="visible" v-scrollFixed>
+  <div class="vk-picker-cover" v-if="visible" v-scroll-fixed>
     <div class="vk-picker-mask" @touchmove.prevent="stopScroll" @click.stop="closePicker"></div>
     <div class="vk-picker-menu" style="height: 272px">
       <div class="vk-picker-menu-li vk-picker-title">

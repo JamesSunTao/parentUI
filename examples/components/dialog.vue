@@ -61,8 +61,9 @@ export default {
     },
     handleLongText () {
       this.$dialog({
-        title: '一行文字一一行文字一行文字文一行文字一一行文字', 
-        'text': '最长最长文案不超过14个字字字个字字字个字字字字个字最长最长文案不超过14个字字字个字字字个字字字字个字'
+        title: '提示', 
+        'text': '确定删除嘛？',
+        'textCenter': true
       })
     },
     handleShortText () {

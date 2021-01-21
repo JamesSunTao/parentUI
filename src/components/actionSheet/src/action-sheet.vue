@@ -1,6 +1,6 @@
 <template>
   <transition name="actionsheet">
-    <div class="vk-action-sheet-cover" v-if="isShow" v-scrollFixed>
+    <div class="vk-action-sheet-cover" v-if="isShow" v-scroll-fixed>
     <div class="vk-action-sheet-mask" @touchmove.prevent="stopScroll" @click.stop="close"></div>
     <div class="vk-action-sheet-menu">
       <div class="vk-action-sheet-menu-li vk-action-sheet-title" v-if="options">

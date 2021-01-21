@@ -75,6 +75,7 @@ export default {
         text-overflow: ellipsis
     .active
       span
+        color: $vk-font-color-2
         font-weight: 500
       &::after
         content: ''

@@ -14,8 +14,9 @@
     "init:install": "npm install --registry=http://registry.vnpm.vipkid.com.cn"
   },
   "dependencies": {
-    "raf.js": "0.0.4",
+    "file-loader": "^6.2.0",
     "query-string": "^6.13.7",
+    "raf.js": "0.0.4",
     "vk-hybrid": "http://registry.vnpm.vipkid.com.cn/vk-hybrid/download/vk-hybrid-3.0.25.tgz"
   },
   "devDependencies": {

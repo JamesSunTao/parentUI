@@ -100,15 +100,23 @@ export default {
       let newColor = this.checked ? newactiveColor : newinactiveColor
       this.$refs.core.style.backgroundColor = newColor[0]
       this.$refs.item.style.backgroundColor =  newColor[1] || '#fff'
-      if(this.verifyColor(this.$refs.core,newColor[0])) {
+      if(this.$refs.item,newColor[0] && this.verifyColor(this.$refs.core,newColor[0])) {
+        window.console.warn(`第1项请传入有效色值`)
         this.$refs.core.style.backgroundColor = '#e1e1e1'
       }
-      if(this.verifyColor(this.$refs.item,newColor[1])) {
+      if(this.$refs.item,newColor[1] &&  this.verifyColor(this.$refs.item,newColor[1])) {
+        window.console.warn(`第2项请传入有效色值`)
         this.$refs.item.style.backgroundColor = '#fff'
       }
     },
     verifyColor(ele,color) {
-      return color && (ele.style.backgroundColor !==  color || !ele.style.backgroundColor)
+      if(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(color)){
+        return false
+      }else if(/rgb\((0|1\d{0,2}|2[0-5]{2}),(0|1\d{0,2}|2[0-5]{2}),(0|1\d{0,2}|2[0-5]{2})\)/.test(color)) {
+         return false
+      } else {
+        return (ele.style.backgroundColor !==  color)
+      }
     }
   },
   mounted() {

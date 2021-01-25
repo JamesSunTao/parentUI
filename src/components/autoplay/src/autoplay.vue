@@ -8,7 +8,7 @@
       <span class="vipkid-play-icon" :class="{ 'vipkid-playing-icon': isPlaying }"> </span>
       <span class="vipkid-play-duration"> {{ duration }}'' </span>
     </div>
-    <audio :src="audioUrl" @canplay="getDuration" @timeupdate="updateTime" ref="au"></audio>
+    <audio :src="selfUrl" @canplay="getDuration" @timeupdate="updateTime" ref="au"></audio>
   </div>
 </template>
 
@@ -19,15 +19,25 @@ export default {
   props: {
     audioUrl: {
       type: String,
-      default:
-        "https://media.vipkidstatic.com/prt/video/tools/upload/J6XPrrQm5zg9K.mp3",
+      default:"",
     },
   },
   data() {
     return {
       duration: 0,
-      isPlaying:false
+      isPlaying:false,
+      selfUrl: ''
     };
+  },
+  watch: {
+    audioUrl:{
+      handler(val) {
+        this.selfUrl = val
+      }
+    }
+  },
+  mounted () {
+    this.selfUrl = this.audioUrl
   },
   computed: {
     playWidth: function () {

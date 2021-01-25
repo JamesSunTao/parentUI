@@ -34,12 +34,22 @@ export default {
       return (this.duration / 60) * 100;
     },
   },
+  mounted() {
+    var musicDom = this.$refs.au;
+    let that = this
+    musicDom.load();
+    musicDom.onloadedmetadata = function () {
+      that.duration = musicDom.duration;
+    };
+  },
   methods: {
     getDuration() {
-      this.duration = Math.ceil(this.$refs.au.duration);
-      if(this.$refs.au.paused){
-        this.isPlaying = false 
-      }
+      this.$nextTick(()=>{
+        this.duration = Math.ceil(this.$refs.au.duration);
+        if(this.$refs.au.paused){
+          this.isPlaying = false 
+        }
+      })
     },
     updateTime(e) {
       if(this.$refs.au.paused){

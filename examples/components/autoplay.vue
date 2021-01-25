@@ -11,14 +11,20 @@
         </div>
       <autoplay style="margin: 20px 0"></autoplay>
       <autoplay
-        audioUrl="
-https://media.vipkidstatic.com/prt/video/tools/upload/Nk18BLOzmJVzz.ogg"
+        v-if="urls"
+        :audioUrl="urls"
       ></autoplay>
     </div>
   </div>
 </template>
 <script>
-export default {};
+export default {
+  data () {
+    return {
+      urls:'http://vos-media.vipkid-qa.com.cn/mgt/vk-work-correct/media/audio1610523556501.wav'
+    }
+  }
+};
 </script>
 
 <style lang='stylus' scoped>

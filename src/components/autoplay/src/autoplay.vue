@@ -8,7 +8,7 @@
       <span class="vipkid-play-icon" :class="{ 'vipkid-playing-icon': isPlaying }"> </span>
       <span class="vipkid-play-duration"> {{ duration }}'' </span>
     </div>
-    <audio :src="selfUrl" @canplay="getDuration" @timeupdate="updateTime" ref="au"></audio>
+    <audio :src="audioUrl" @canplay="getDuration" @timeupdate="updateTime" ref="au"></audio>
   </div>
 </template>
 
@@ -19,37 +19,37 @@ export default {
   props: {
     audioUrl: {
       type: String,
-      default:"",
+      default:
+        "https://media.vipkidstatic.com/prt/video/tools/upload/J6XPrrQm5zg9K.mp3",
     },
   },
   data() {
     return {
       duration: 0,
-      isPlaying:false,
-      selfUrl: ''
+      isPlaying:false
     };
-  },
-  watch: {
-    audioUrl:{
-      handler(val) {
-        this.selfUrl = val
-      }
-    }
-  },
-  mounted () {
-    this.selfUrl = this.audioUrl
   },
   computed: {
     playWidth: function () {
       return (this.duration / 60) * 100;
     },
   },
+  mounted() {
+    var musicDom = this.$refs.au;
+    let that = this
+    musicDom.load();
+    musicDom.onloadedmetadata = function () {
+      that.duration = musicDom.duration;
+    };
+  },
   methods: {
     getDuration() {
-      this.duration = Math.ceil(this.$refs.au.duration);
-      if(this.$refs.au.paused){
-        this.isPlaying = false 
-      }
+      this.$nextTick(()=>{
+        this.duration = Math.ceil(this.$refs.au.duration);
+        if(this.$refs.au.paused){
+          this.isPlaying = false 
+        }
+      })
     },
     updateTime(e) {
       if(this.$refs.au.paused){

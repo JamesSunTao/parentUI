@@ -3,7 +3,7 @@
     <headerbar title="popover"></headerbar>
     <div class="content">
       <div class="content-item">
-        <div class="info">默认态度（弹框位置）</div>
+        <div class="info"> 默认态度（弹框位置）</div>
         <popover class="aa"  autoShow stopClickDom label="点击doc，后我是不会关闭的">
         <span class="btn" @click="fn" slot="button">左上</span>
         </popover>
@@ -28,9 +28,6 @@
         <popover class="aa" type="multi" label="啊我是文字啊啊啊我是文字啊啊啊我是文字啊啊我是文字啊">
           <span class="btn" slot="button">点我</span>
         </popover>
-        <popover class="aa" position_x="right" label="啊我字是文字啊">
-          <span class="btn" slot="button">点我</span>
-        </popover>
         <popover class="aa" type="multi"  position_y="bottom"  label="啊我是文字啊啊啊我是文字啊啊啊我是文字啊啊我是文字啊">
           <span class="btn" slot="button">点我</span>
         </popover>
@@ -47,13 +44,21 @@
       <div class="content-item">
         <div class="info">自定义内容</div>
         <popover class="aa" autoShow position_y="bottom" theme="light">
-          <div>文字文字文字</div>
-          <div class="line"></div>
-          <div>文字文字文字</div>
-          <div class="line"></div>
-          <div>文字文字文字</div>
-          <div class="line"></div>
+            <div>文字文字文字</div>
+            <div class="line"></div>
+            <div>文字文字文字</div>
+            <div class="line"></div>
+            <div>文字文字文字</div>
           <span class="btn" slot="button">点我</span>
+        </popover>
+      </div>
+      <div class="content-item">
+        <div class="info">自定义位置</div>
+        <popover class="aa" position_x="right" theme="light" closeable   symbolMiddle :top="427"  :left="0" label="啊我字是，文字啊">
+          <div class="btn2" slot="button"></div>
+        </popover>
+        <popover class="aa" position_x="right" theme="light" closeable autoShow :borderRadius="'4px'" symbolMiddle :top="424"  :left="142.453" label="啊我字是，文字啊">
+          <div class="btn2" slot="button"></div>
         </popover>
       </div>
       </div>     
@@ -93,4 +98,8 @@ export default {
    margin-right: 40px
   .adada
    background: red
+  .btn2
+    width: 100px
+    height: 100px
+    background: url('../assets/images/book.png') center/contain no-repeat 
 </style>

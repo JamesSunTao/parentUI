@@ -12,7 +12,7 @@
       </div>
       <div class="content-item">
         <div class="info">设置颜色支持数组格式</div>
-        <vswitch v-model="value3" :activeColor="['blue', 'pink']" :inactiveColor="['yellow', 'red']" active-value="1" inactive-value="2"></vswitch>
+        <vswitch v-model="value3" :activeColor="['rgb(255,211,250)', 'pink']" :inactiveColor="['yellow', 'red']" active-value="1" inactive-value="2"></vswitch>
       </div>
       <div class="content-item">
         <div class="info">设置颜色支持字符串格式</div>

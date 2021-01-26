@@ -10,16 +10,16 @@ npm run dev
 npm run build
 
 ```
-## V.0.1
+## V1.0.1
 
 ### 更新内容
 
 picker 支持服务端渲染
 
-2021.01.26
+
 ## V1.0.2 版本发布
 
-### 更新内容
+### 更新内容 - 2020.01.26
 
 1. 新增组件： audioplayer socrllNum
 2. 优化picker，dialog，tab swich list 组件样式

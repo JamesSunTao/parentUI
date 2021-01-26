@@ -6,4 +6,5 @@ list.install = function (Vue) {
   Vue.component(listItem.name, listItem)
 }
 
+export {list, listItem}
 export default list

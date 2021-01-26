@@ -1,10 +1,10 @@
-# pullRefresh
+#autoplay 音频播放
+
 ## Attributes
 |  参数 | 说明 | 类型  | 可选值  | 默认值  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|refresh-class-name| 需要刷新的区域 |String||-|
-|bgcolor| 背景颜色 |String||#FFFFFF|
+|audioUrl | 音频地址 | String | - | - |
+
 ## Event
 | 事件名称  | 说明  | 回调参数  |
 | ------------ | ------------ | ------------ |
-|  refresh |  刷新完毕时触发 | - |

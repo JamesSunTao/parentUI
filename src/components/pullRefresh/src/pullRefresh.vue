@@ -1,5 +1,5 @@
 <template lang="pug">
-  .vk-pull-loading(:style="{height: pullHeight + 'px'}" :class="{'vk-pull-close':closeShow}")
+  .vk-pull-loading(:style="{height: pullHeight + 'px', 'background-color': bgcolor}" :class="{'vk-pull-close':closeShow}")
     span.vk-loading-icon(v-if="loadingShow" :class="statusClass")
 </template>
 <script>
@@ -18,6 +18,10 @@ export default {
     refreshClassName: {
       require: true,
       type: String,
+    },
+    bgcolor: {
+      type: String,
+      default: "#FFFFFF"
     }
   },
   mounted() {
@@ -103,7 +107,6 @@ export default {
 .vk-pull-loading
   width 100%
   max-height: 100px
-  background-color: #fff
   text-align: center
   position: relative
   &.vk-pull-close

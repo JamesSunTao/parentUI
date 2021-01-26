@@ -10,3 +10,6 @@ popover
 |theme|背景（主题）|String|light  |-|
 |autoShow|是否自动展示|Bealoon| - |-|
 |stopClickDom|是否阻止doc的click事件| - |-|
+|left、right、top、bottom|自定义位置| - |-|
+|symbolMiddle|小箭头是否在中间| - |false|
+|borderRadius|自定义圆角| - |false|

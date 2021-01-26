@@ -13,6 +13,7 @@
       <div class="content" @click="">生日： {{date}}</div>
       <div class="content" @click="changecustom = true">自定义选择器-不需要联动</div>
       <div class="content" @click="linkage = true">自定义选择器-数据联动</div>
+      <div class="content" @click="openDialog">自定义选择器-dialog</div>
     </div>
     picker(title="选择省" :visible.sync='changeReg' type="province" @confirm-fn="confirmFnProvince")
     picker(title="选择市" :visible.sync='changeCity' type="city" :code="province.code" @confirm-fn="confirmFnCity")
@@ -73,6 +74,9 @@ export default {
   methods: {
     confirmFnProvince(values){
       this.province = values[0]
+    },
+    openDialog() {
+      this.$dialog({title: "111"})
     },
     confirmFnCity(values) {
       if (!this.province.name) {

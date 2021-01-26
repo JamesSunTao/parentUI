@@ -3,11 +3,9 @@
     <div class="vk-nodata-main">
       <div class="vk-nodata-bgimg" :style="{backgroundImage:'url(' +  bgimg + ')'}">
       </div>
-      <p class="vk-nodata-title">
-        {{titleList[0] || '暂无数据'}}
+      <p class="vk-nodata-title" v-html="titleList[0]">
       </p>
-      <p class="vk-nodata-sec-title" v-if="titleList[1]">
-        {{titleList[1]}}
+      <p class="vk-nodata-sec-title" v-if="titleList[1]" v-html="titleList[1]">
       </p>
       <div class="vk-nodata-sec-btn"  @click="$emit('subFunction')" v-if="buttonList[1]">
         {{buttonList[1]}}
@@ -38,7 +36,7 @@ export default {
     titleList: {
       type: Array,
       default() {
-        return []
+        return ['暂无数据']
       }
     },
     buttonList:{
@@ -79,12 +77,16 @@ export default {
       font-size: 16px
       font-family: PingFangSC, PingFangSC-Regular
       font-weight: 400
+      max-width 70%
+      margin 0 auto
       color: #333333
     }
     .vk-nodata-sec-title {
       font-size: 12px
       text-align: center
       color: #999999
+      max-width 70%
+      margin 0 auto
       margin-top 20px
     }
     .vk-nodata-main-btn , .vk-nodata-sec-btn {

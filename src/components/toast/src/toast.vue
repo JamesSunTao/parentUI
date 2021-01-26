@@ -1,10 +1,10 @@
 <template lang="pug">
-transition(name="fade")
-  .ui-toast(v-cloak)
-    .ui-toast__text(v-if="!type")(:class="{'ui-toast__image__text-left': textLeft}") {{text}}
-    .ui-toast__image(v-if="type")
-      .ui-toast__image__icon(:class="type")
-      .ui-toast__image__text(:class="{'ui-toast__image__text-left': textLeft}") {{text}}
+  transition(name="fade")
+    .ui-toast(v-cloak)
+      .ui-toast__text(v-if="!type" :class="{'ui-toast__image__text-left': textLeft}") {{text}}
+      .ui-toast__image(v-if="type")
+        .ui-toast__image__icon(:class="type")
+        .ui-toast__image__text(:class="{'ui-toast__image__text-left': textLeft}") {{text}}
 </template>
 <script>
 export default {
@@ -19,6 +19,7 @@ export default {
   },
   mounted() {
     setTimeout(() => {
+      typeof this.cb === 'function' && this.cb()
       this.$destroy(true)
       this.$el.parentNode.removeChild(this.$el)
     }, this.timeout)

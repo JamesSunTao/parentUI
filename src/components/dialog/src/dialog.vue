@@ -1,5 +1,5 @@
 <template lang="pug">
-.ui-dialog(v-if="iShow" v-scrollFixed)
+.ui-dialog(v-if="iShow" v-scroll-fixed)
   transition(name="ui-dialog")
     .ui-dialog__wrap(v-cloak)(:class="{'ui-dialog__icon-type': iconClass || type}")
       .ui-dialog__wrap__info.ui-bottom-line(:class="{'ui-dialog__hidden-button': hiddenButton}")
@@ -133,8 +133,8 @@ p
     text-align center
     width 295px
     &__info
-      padding 24px 20px 20px 20px
-      min-height 76px
+      padding 24px 20px
+      min-height 54px
       display flex
       flex-direction column
       justify-content center

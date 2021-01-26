@@ -6,7 +6,9 @@
         <div class="symbol" ref="symbol"></div>
     </div>
     <div v-else-if="visiable && $slots.default " :class="{[`position-${position_y}`]:true,[`position-${position_x}`]:true,light:isBgWhite}" class="content"  ref="content">
-        <slot></slot>
+        <div style="display: flex;flex-direction: column">
+            <slot></slot>
+        </div>
         <div class="symbol" ref="symbol"></div>
     </div>
     <span ref="button">
@@ -40,6 +42,26 @@ export default {
        type: String,
        default: '',
     },
+    symbolMiddle: {
+      type: Boolean,
+      default: false,
+    },
+    borderRadius:{
+      type: String,
+      default: '',
+    },
+    left:{
+      type: Number,
+    },
+    right: {
+      type: Number,
+    },
+    top: {
+      type: Number,
+    },
+    bottom: {
+      type: Number,
+    },
     type: {
       type: String,
       default: '',
@@ -68,32 +90,40 @@ export default {
       }
   },
   beforeDestroy(){
-    console.log(this.$refs.content && this.$refs.content.remove()  )
+    this.$refs.content && this.$refs.content.remove()
   },
   methods: {
     positionContent() {
        document.body.appendChild(this.$refs.content)
        let { left, top, width, height,right} = this.$refs.button.getBoundingClientRect()
-       if(this.position_y == 'top') {
-          if(this.position_x == 'left') {
+       if (this.position_y == 'top') {
+          if (this.position_x == 'left') {
             this.$refs.content.style.left = left - left/2 + document.documentElement.scrollLeft  + 'px'
-          }else {
-               let { left:left1, top, width:width1, height,right} = this.$refs.content.getBoundingClientRect()
+          } else {
+               let { left:left1,width:width1} = this.$refs.content.getBoundingClientRect()
                this.$refs.content.style.left = left - width1 + width + document.documentElement.scrollLeft + 10 + 'px'
                this.$refs.content.style.marginBottom = 6 + 'px'
           }
          this.$refs.content.style.top = top  + document.documentElement.scrollTop +'px'
-       }else if(this.position_y == 'bottom'){
-         if(this.position_x == 'left') {
+       } else if(this.position_y == 'bottom'){
+         if (this.position_x == 'left') {
             this.$refs.content.style.left = left + document.documentElement.scrollLeft  + 'px'
-         }else {
-            let { left:left1, top, width:width1, height,right} = this.$refs.content.getBoundingClientRect()
+         } else {
+            let { left:left1, width:width1} = this.$refs.content.getBoundingClientRect()
             this.$refs.content.style.left = left - width1 + width + document.documentElement.scrollLeft + 10 + 'px'
          }  
          this.$refs.content.style.marginTop = 6 + 'px'
          this.$refs.content.style.top = top + height + document.documentElement.scrollTop + 'px'
-         
        }
+       let isLeft = this.left || this.left === 0,
+           isTop = this.top || this.top === 0,
+           isBottom = this.bottom || this.bottom === 0,
+           isRight = this.right || this.right === 0 
+       isLeft && (this.$refs.content.style.left = this.left + 'px')
+       isRight && (this.$refs.content.style.right = this.right + 'px')
+       isTop  && (this.$refs.content.style.top = this.top + 'px')
+       isBottom && (this.$refs.content.style.bottom = this.bottom + 'px')
+       this.symbolMiddle && (this.$refs.symbol.style.left = `calc(50% - 5px)`)
     },
     initBg() {
       if (this.position_y == 'top') {
@@ -101,6 +131,7 @@ export default {
       } else if (this.position_y == 'bottom') {
         this.$refs.symbol.style.borderBottomColor = '#F9FAFC'
       }
+      this.borderRadius && (this.$refs.content.style.borderRadius = this.borderRadius)
     },
     open() {
       this.visiable = true
@@ -122,10 +153,10 @@ export default {
       }
     },
     onClickDocument(e) {
-      if (this.$refs.popover && (this.$refs.popover === e.target || this.$refs.popover.contains(e.target) )) {
+      if (this.$refs.popover && (this.$refs.popover === e.target || this.$refs.popover.contains(e.target))) {
         return
       }
-      if(this.$refs.content && (this.$refs.content === e.target || this.$refs.content.contains(e.target) )) {
+      if (this.$refs.content && (this.$refs.content === e.target || this.$refs.content.contains(e.target))) {
         return
       }
       this.close()
@@ -158,7 +189,6 @@ export default {
     font-size: $vk-font-size-sm
     word-break: break-all
     max-width: 260px
-    flex-direction: column
     padding: 9px 10px 9px 12px
   .label
     margin-right: 5px

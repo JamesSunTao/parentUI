@@ -38,7 +38,11 @@ p
     &::after
       content: ''
       display: inline-block
-      border-bottom: 1px solid #d5d8db
+      border-bottom 1px solid #f2f2f2
+      -webkit-transform-origin: 0 100%
+      transform-origin: 0 100%
+      -webkit-transform: scaleY(0.5)
+      transform: scaleY(0.5)
       position: absolute
       bottom: 0
       left: 17px

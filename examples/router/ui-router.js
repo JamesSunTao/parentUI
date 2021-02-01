@@ -99,6 +99,10 @@ export default [
     path: '/scrollNumber',
     name: 'scrollNumber',
     component: resolve => require(['../components/scrollNumber.vue'], resolve),
+  }, {
+    path: '/imagePreview',
+    name: 'imagePreview',
+    component: resolve => require(['../components/image-preview.vue'], resolve),
   },
   
 ]

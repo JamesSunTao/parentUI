@@ -25,6 +25,7 @@ import rate from '@/components/rate'
 
 import list from '@/components/list'
 import pullRefresh from '@/components/pullRefresh'
+import imagePreview from '@/components/image-preview'
 
 // 报告类组件
 import reportHeadImage from '@/components/reportComponents/report/report-head-image'
@@ -55,7 +56,8 @@ const components = {
   picker,
   pullRefresh,
   autoplay,
-  scrollNumber
+  scrollNumber,
+  imagePreview
 }
 const prototypes = {
   dialog,

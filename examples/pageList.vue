@@ -8,34 +8,20 @@
   <div v-for="item in uiRouter" :key="item.name" class="item">
     <router-link :to="item.path">{{item.name}}</router-link>
   </div>
-  <h2>Report Theme</h2>
-  <div v-for="item in reportRouter" :key="item.name" class="item">
-    <a @click="openReportTheme('purple')">{{item.name}}</a>
-  </div>
 </div>
 </template>
 <script>
 import jsRouter from './router/js-router'
 import uiRouter from './router/ui-router'
-import reportRouter from './router/report-router.js'
 export default {
   data () {
     return {
       jsRouter,
-      uiRouter,
-      reportRouter
+      uiRouter
     }
   },
   methods: {
-    openReportTheme(theme) {
-      this.$router.push({
-        path: '/purple',
-        query: {
-          theme: 'purple',
-          studentId: 123,
-        }
-      })
-    }
+    //
   }
 }
 </script>

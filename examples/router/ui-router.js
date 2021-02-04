@@ -99,6 +99,8 @@ export default [
     path: '/scrollNumber',
     name: 'scrollNumber',
     component: resolve => require(['../components/scrollNumber.vue'], resolve),
-  },
-  
-]
+  },{
+    path: '/videoplayer',
+    name: 'videoplayer',
+    component: resolve => require(['../components/videoplayer.vue'], resolve),
+  }]

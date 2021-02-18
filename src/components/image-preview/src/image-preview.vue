@@ -43,6 +43,9 @@ export default {
       this.$emit('deleteImg', this.deleteItems)
       this.deleteItems = []
     },
+    beforeDeleteImg() {
+       return this.$parent.beforeDeleteImg()
+    }
   },
   mounted() {
     this.$imagePreview({
@@ -52,7 +55,8 @@ export default {
         showBack: this.showBack,
         showDelete: this.showDelete,
         delete: this.deleteImg,
-        deleteAction: this.deleteAction
+        deleteAction: this.deleteAction,
+        beforeDeleteImg: this.beforeDeleteImg
       })
   },
 };

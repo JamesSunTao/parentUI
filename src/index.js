@@ -23,6 +23,7 @@ import parentuiCol from '@/components/parentui-col'
 
 import tabs from '@/components/tabs'
 import rate from '@/components/rate'
+import stepper from '@/components/stepper'
 
 import list from '@/components/list'
 import pullRefresh from '@/components/pullRefresh'
@@ -55,7 +56,8 @@ const components = {
   scrollNumber,
   imagePreview,
   field,
-  videoplayer
+  videoplayer,
+  stepper
 }
 const prototypes = {
   dialog,

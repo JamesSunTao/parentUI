@@ -115,6 +115,9 @@ export default {
       this.$emit('close')
     },
     deleteImg() {
+      this.$emit('beforeDelete', this.delCallback)
+    },
+    delCallback() {
       let currentIndex = this.gallery.getCurrentIndex()
       this.$emit('delete', currentIndex)
       if (this.gallery.items.length === 1) {

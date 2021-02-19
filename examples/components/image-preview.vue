@@ -10,7 +10,11 @@
           v-for="(l, index) in list"
         >
           <div class="vk-preview__imgwrap">
-            <img ref="img" :src="l" alt="" />
+            <img
+              ref="img"
+              :src="l"
+              alt=""
+            />
           </div>
         </li>
       </ul>
@@ -23,6 +27,7 @@
       :list="$refs.img"
       :index="index"
       @deleteImg="deleteImg"
+      @beforeDeleteImg="beforeDeleteImg"
     ></image-preview>
   </div>
 </template>
@@ -50,6 +55,18 @@ export default {
     },
     deleteImg(items) {
       console.log('要删除的图片位置：', items)
+    },
+    beforeDeleteImg() {
+      return new Promise((resolve, reject)=> {
+        this.$dialog({
+          text: '确定要删除当前作业图吗？',
+          'textCenter': true,
+        }).then((res) => {
+          resolve(res)
+        }).catch((err) => {
+          reject(err)
+        })
+      }) 
     }
   }
 }

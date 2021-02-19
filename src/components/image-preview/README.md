@@ -5,6 +5,7 @@
 | ------------ | ------------ | ------------ | ------------ | ------------ |
 | list | 图片DOM列表 | Array| - | [] |
 | index | 当前图片的下标 | Number| - | 0 |
+| showPreview | 是否展示图片预览 | Boolean| - | false |
 | showBack | 是否展示返回按钮 | Boolean| true/false | false |
 | showDelete | 是否展示删除按钮 | Boolean| true/false | false |
 
@@ -15,3 +16,4 @@
 | ------------ | ------------ | ------------ |
 | close | 预览关闭（必传） | 	- |
 | deleteImg | 删除预览图片（需要删除按钮时需传） | items 图片依次删除的位置  |
+| beforeDeleteImg | 删除预览图片前事件（可选） | - |

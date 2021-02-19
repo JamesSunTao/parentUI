@@ -27,9 +27,18 @@ PhotoSwipe.install = (Vue) => {
       }
       opts.close()
     })
+    instance.$on('beforeDelete',  (callback) => {
+      if (opts.beforeDeleteImg) {
+        opts.beforeDeleteImg().then(() => {
+          callback()
+        }, () => {})
+      } else {
+        callback()
+      }
+    })
     instance.$on('delete', (index) => {
       if (opts.delete) {
-        opts.delete(index, true)
+        opts.delete(index)
       }
     })
   }

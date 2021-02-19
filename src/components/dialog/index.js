@@ -28,13 +28,12 @@ const Dialog = function(option = _default) {
       instance = new DialogConstructor({
         data: obj
       }).$mount()
-      
-      instance.callback = (action) => {
-        if (action === 'confirm') {
-          resolve(action)
-        } else if (action === 'cancel') {
-          reject(action)
-        }
+    }
+    instance.callback = (action) => {
+      if (action === 'confirm') {
+        resolve(action)
+      } else if (action === 'cancel') {
+        reject(action)
       }
     }
     for (let prop in obj) {

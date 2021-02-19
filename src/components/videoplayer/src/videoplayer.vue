@@ -1,13 +1,20 @@
 <template>
-  <div class="video-palyer-panel">
-    <img class="close-btn" src="../img/icon-close.png" @click="closeFn"/>
-    <div class="video">
-      <video v-show="videoPlaying" ref="jsvideo" custom-cache="false" preload="none" :src="videoUrl" controls="controls" webkit-playsinline="true" x-webkit-airplay="true"></video>
-      <div class="cover" v-show="!videoPlaying">
-        <img class="cover-img" :src="coverUrl"/>
-        <img class="icon-play" src="../img/icon-play-video.png" @click="watchVideo"/>
+  <div class="vk-video-palyer-panel" @click="videoPause">
+    <img class="vk-close-btn" src="../img/icon-close.png" @click.stop="closeFn"/>
+    <div class="vk-video">
+      <video v-show="videoPlaying" :autoplay="autoplay" ref="jsvideo" :loop="loop" custom-cache="false" preload="none" :src="videoUrl" :controls="controls" webkit-playsinline="true" x-webkit-airplay="true"></video>
+      <div class="vk-cover" v-show="!videoPlaying">
+        <img class="vk-cover-img" :src="coverUrl"/>
+        <img class="vk-icon-play" src="../img/icon-play-video.png" @click.stop="videoPlay"/>
       </div>
-      <div v-show="!videoPlaying" class="cover-opacity"></div>
+      <div v-show="!videoPlaying" class="vk-cover-opacity"></div>
+    </div>
+    <div class="vk-video-controls" v-if="!controls">
+      <div class="vk-video-progress" ref='video-progres'>
+        <div class="vk-video-progress-bar" :style="barStyle">
+          <span ref="video-progres-bar"></span>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -18,30 +25,104 @@ export default {
   props: {
     coverUrl: {
       type: String,
-      default: ''
+      default: 'https://img.vipkidstatic.com/prt/image/tools/upload/gJXZOOBM6NlrD.png'
     },
     videoUrl: {
       required: true,
       type: String,
       default: ''
     },
+    autoplay: {
+      type: Boolean,
+      default: false
+    },
+    loop: {
+      type: Boolean,
+      default: false
+    },
+    controls: {
+      type: Boolean,
+      default: true
+    },
+    customControls: {
+      type: String,
+      default: 'normal'
+    }
   },
   data: function() {
     return {
-      videoPlaying: false
+      videoPlaying: false,
+      videoTime: 0,
+      videoTimeTotal: 1000,
     }
   },
+  computed: {
+    barStyle() {
+      return { width: (100 * this.videoTime / this.videoTimeTotal).toFixed(2) + '%' }
+    }
+  },
+  mounted() {
+    let video = this.$refs.jsvideo
+    let progres = this.$refs['video-progres']
+    let bar = this.$refs['video-progres-bar']
+    video.addEventListener('loadstart', () => {
+      this.$emit('loadstart')
+      this.videoTime = 0
+    })
+    video.addEventListener('pause', () => {
+      // 视频暂停
+      this.$emit('pause')
+    })
+    video.addEventListener('play', () => {
+      this.videoPlaying = true
+      this.$emit('play')
+    })
+    video.addEventListener('timeupdate', () => {
+      // 目前的播放位置已更改时，播放时间更新
+      this.$emit('timeupdate', video.currentTime)
+      this.videoTime = video.currentTime
+    })
+    video.addEventListener('durationchange', () => {
+      // 时长变化时
+      this.$emit('durationchange', video.duration)
+      this.videoTimeTotal = video.duration
+    })
+    let touchWidth = 0
+    let cirW = progres.offsetWidth / 2
+    bar.addEventListener('touchstart', (event) => {
+      this.videoPlay()
+      let touch = event.targetTouches[0]
+      touchWidth = touch.clientX - bar.offsetLeft - progres.offsetLeft
+    })
+    bar.addEventListener('touchmove', (event) => {
+      event.preventDefault()
+      let touch = event.targetTouches[0]
+      let oLeft = touch.clientX - progres.offsetLeft - touchWidth
+      let durationWidth = oLeft + cirW
+      // 边界检测
+      if (oLeft < -cirW) {
+        oLeft = -cirW
+        durationWidth = 0
+      } else if (oLeft > progres.offsetWidth - cirW) {
+        oLeft = progres.offsetWidth - cirW
+        durationWidth = progres.offsetWidth
+      }
+      let rate = durationWidth / progres.offsetWidth * 100
+      this.videoTime = (rate * this.videoTimeTotal) / 100
+      video.currentTime = this.videoTime
+    })
+  },
   methods: {
-    watchVideo() {
+    videoPlay() {
       this.videoPlaying = true
       let video = this.$refs.jsvideo
-      video.play()
-      video.addEventListener('pause', () => {
-        this.videoPlaying = false
-      })
-      video.addEventListener('play', () => {
-        this.videoPlaying = true
-      })
+      video && video.play()
+    },
+    videoPause(){
+      if (this.controls) return
+      this.videoPlaying = false
+      let video = this.$refs.jsvideo
+      video && video.pause()
     },
     closeFn() {
       this.videoPlaying = false
@@ -52,7 +133,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.video-palyer-panel
+.vk-video-palyer-panel
   position: fixed
   width: 100%
   height: 100%
@@ -61,7 +142,7 @@ export default {
   left: 0px
   background-color: #333333
   z-index: 20
-  .close-btn
+  .vk-close-btn
     position: absolute
     width: 35px
     height: 35px
@@ -69,7 +150,7 @@ export default {
     top: 12px
     &:active
       opacity: 0.7
-  .video
+  .vk-video
     position: relative
     width: 100%
     height: 300px
@@ -79,7 +160,7 @@ export default {
     video 
       width: 100%
       height: 100%
-    .cover-opacity
+    .vk-cover-opacity
       position: absolute
       width: 100%
       height: 100%
@@ -88,16 +169,16 @@ export default {
       z-index: 12
       background-color: #333
       opacity: 0.1
-    .cover
+    .vk-cover
       position: absolute
       width: 100%
       height: 100%
       top: 0
       left: 0
-      .cover-img
+      .vk-cover-img
         width: 100%
         height: 100%
-      .icon-play
+      .vk-icon-play
         position: absolute
         display: inline-block
         z-index: 13
@@ -109,5 +190,28 @@ export default {
         height: 65px
         &:active
           opacity: 0.9
-
+  .vk-video-controls
+    position absolute
+    width 100%
+    bottom 10%
+    .vk-video-progress
+      position relative
+      height 3px
+      background #787878
+      .vk-video-progress-bar
+        display inline-block
+        background #ffffff
+        position absolute
+        left 0
+        bottom 0
+        height 100%
+        span
+          display inline-block
+          width 8px
+          height 8px
+          position absolute
+          right -4px
+          bottom -2px
+          background #ffffff
+          border-radius 50%
 </style>

@@ -104,5 +104,10 @@ export default [
     name: 'imagePreview',
     component: resolve => require(['../components/image-preview.vue'], resolve),
   },
+  {
+    path: '/field',
+    name: 'field',
+    component: resolve => require(['../components/field.vue'], resolve),
+  },
   
 ]

@@ -63,8 +63,8 @@ export default {
   },
   mounted() {
     let video = this.$refs.jsvideo
-    let progres = this.$refs['video-progres']
-    let bar = this.$refs['video-progres-bar']
+    let progres = this.$refs['video-progres'] // 外
+    let bar = this.$refs['video-progres-bar'] // 里
     video.addEventListener('loadstart', () => {
       this.$emit('loadstart')
       this.videoTime = 0
@@ -87,30 +87,32 @@ export default {
       this.$emit('durationchange', video.duration)
       this.videoTimeTotal = video.duration
     })
-    let touchWidth = 0
-    let cirW = progres.offsetWidth / 2
-    bar.addEventListener('touchstart', (event) => {
-      this.videoPlay()
-      let touch = event.targetTouches[0]
-      touchWidth = touch.clientX - bar.offsetLeft - progres.offsetLeft
-    })
-    bar.addEventListener('touchmove', (event) => {
-      event.preventDefault()
-      let touch = event.targetTouches[0]
-      let oLeft = touch.clientX - progres.offsetLeft - touchWidth
-      let durationWidth = oLeft + cirW
-      // 边界检测
-      if (oLeft < -cirW) {
-        oLeft = -cirW
-        durationWidth = 0
-      } else if (oLeft > progres.offsetWidth - cirW) {
-        oLeft = progres.offsetWidth - cirW
-        durationWidth = progres.offsetWidth
-      }
-      let rate = durationWidth / progres.offsetWidth * 100
-      this.videoTime = (rate * this.videoTimeTotal) / 100
-      video.currentTime = this.videoTime
-    })
+    if (!this.controls) {
+      let touchWidth = 0
+      let cirW = bar.offsetWidth / 2
+      bar.addEventListener('touchstart', (event) => {
+        this.videoPlay()
+        let touch = event.targetTouches[0]
+        touchWidth = touch.clientX - bar.offsetLeft - progres.offsetLeft
+      })
+      bar.addEventListener('touchmove', (event) => {
+        event.preventDefault()
+        let touch = event.targetTouches[0]
+        let oLeft = touch.clientX - progres.offsetLeft - touchWidth
+        let durationWidth = oLeft + cirW
+        // 边界检测
+        if (oLeft < -cirW) {
+          oLeft = -cirW
+          durationWidth = 0
+        } else if (oLeft > progres.offsetWidth - cirW) {
+          oLeft = progres.offsetWidth - cirW
+          durationWidth = progres.offsetWidth
+        }
+        let rate = durationWidth / progres.offsetWidth * 100
+        this.videoTime = (rate * this.videoTimeTotal) / 100
+        video.currentTime = this.videoTime
+      })
+    }
   },
   methods: {
     videoPlay() {
@@ -118,7 +120,7 @@ export default {
       let video = this.$refs.jsvideo
       video && video.play()
     },
-    videoPause(){
+    videoPause() {
       if (this.controls) return
       this.videoPlaying = false
       let video = this.$refs.jsvideo

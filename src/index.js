@@ -58,11 +58,8 @@ const components = {
   pullRefresh,
   autoplay,
   scrollNumber,
-<<<<<<< HEAD
-  imagePreview
-=======
+  imagePreview,
   field
->>>>>>> field组件
 }
 const prototypes = {
   dialog,

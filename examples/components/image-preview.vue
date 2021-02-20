@@ -24,18 +24,18 @@
       @close="close"
       :showBack="showBack"
       :showDelete="showDelete"
-      :list="$refs.img"
-      :index="index"
-      @deleteImg="deleteImg"
-      @beforeDeleteImg="beforeDeleteImg"
+      :data="$refs.img"
+      :imageIndex="index"
+      @delete="deleteImg"
+      @beforeDelete="beforeDeleteImg"
     ></image-preview>
   </div>
 </template>
 
 <script>
-import imagePreview from '../../src/components/image-preview/src/image-preview.vue'
+// import imagePreview from '../../src/components/image-preview/src/image-preview.vue'
 export default {
-  components: { imagePreview },
+  // components: { imagePreview },
   data() {
     return {
       list: ['https://resource.vipkid.com.cn/static/images/common/avatar/default.png','https://resource.vipkid.com.cn/static/images/common/avatar/girl_1.png','https://resource.vipkid.com.cn/static/images/common/avatar/boy_3.png','https://resource.vipkid.com.cn/static/images/common/avatar/default.png'],
@@ -57,16 +57,10 @@ export default {
       console.log('要删除的图片位置：', items)
     },
     beforeDeleteImg() {
-      return new Promise((resolve, reject)=> {
-        this.$dialog({
+      return this.$dialog({
           text: '确定要删除当前作业图吗？',
           'textCenter': true,
-        }).then((res) => {
-          resolve(res)
-        }).catch((err) => {
-          reject(err)
-        })
-      }) 
+      })
     }
   }
 }

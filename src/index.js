@@ -15,6 +15,7 @@ import search from '@/components/search'
 import badge from '@/components/badge'
 import nodata from '@/components/nodata'
 import autoplay from '@/components/autoplay'
+import field from '@/components/field'
 import scrollNumber from '@/components/scrollNumber'
 import imageView from '@/components/image-view'
 import parentuiRow from '@/components/parentui-row'
@@ -57,7 +58,11 @@ const components = {
   pullRefresh,
   autoplay,
   scrollNumber,
+<<<<<<< HEAD
   imagePreview
+=======
+  field
+>>>>>>> field组件
 }
 const prototypes = {
   dialog,

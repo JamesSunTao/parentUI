@@ -16,6 +16,12 @@
         :loop="true"
       ></videoplayer>
       <videoplayer
+        :full-screen="false"
+        cover-url="https://img.vipkidstatic.com/ai/video-analysis/front_cover/0bf10ede-f051-46ee-9c4c-24a5c5919cb0.png"
+        video-url="https://media.vipkidstatic.com/learning/0bf10ede-f051-46ee-9c4c-24a5c5919cb0.mp4"
+        :loop="true"
+      ></videoplayer>
+      <videoplayer
         v-if="isShowVideoplayer1"
         video-url="https://media.vipkidstatic.com/learning/0bf10ede-f051-46ee-9c4c-24a5c5919cb0.mp4"
         @videoclose="isShowVideoplayer1 = false"
@@ -33,7 +39,13 @@
         video-url="https://media.vipkidstatic.com/learning/0bf10ede-f051-46ee-9c4c-24a5c5919cb0.mp4"
         @videoclose="isShowVideoplayer3 = false"
         :controls="false"
-      ></videoplayer>
+      >
+        <template>
+          <div style="color: #fff">
+            自定义插槽
+          </div>
+        </template>
+      </videoplayer>
     </div>
   </div>
 </template>

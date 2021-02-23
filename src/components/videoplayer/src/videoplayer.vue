@@ -1,20 +1,26 @@
 <template>
-  <div class="vk-video-palyer-panel" @click="videoPause">
-    <img class="vk-close-btn" src="../img/icon-close.png" @click.stop="closeFn"/>
-    <div class="vk-video">
-      <video v-show="videoPlaying" :autoplay="autoplay" ref="jsvideo" :loop="loop" custom-cache="false" preload="none" :src="videoUrl" :controls="controls" webkit-playsinline="true" x-webkit-airplay="true"></video>
-      <div class="vk-cover" v-show="!videoPlaying">
-        <img class="vk-cover-img" :src="coverUrl"/>
-        <img class="vk-icon-play" src="../img/icon-play-video.png" @click.stop="videoPlay"/>
+  <div class="vk-video-contianer">
+    <div class="vk-video-palyer-panel" v-if="fullScreen" @click="videoPause">
+      <img class="vk-close-btn" src="../img/icon-close.png" @click.stop="closeFn"/>
+      <div class="vk-video">
+        <video v-show="videoPlaying" :autoplay="autoplay" ref="jsvideo" :loop="loop" custom-cache="false" preload="none" :src="videoUrl" :controls="controls" webkit-playsinline="true" x-webkit-airplay="true"></video>
+        <div class="vk-cover" v-show="!videoPlaying">
+          <img class="vk-cover-img" :src="coverUrl"/>
+          <img class="vk-icon-play" src="../img/icon-play-video.png" @click.stop="videoPlay"/>
+        </div>
+        <div v-show="!videoPlaying" class="vk-cover-opacity"></div>
       </div>
-      <div v-show="!videoPlaying" class="vk-cover-opacity"></div>
-    </div>
-    <div class="vk-video-controls" v-if="!controls">
-      <div class="vk-video-progress" ref='video-progres'>
-        <div class="vk-video-progress-bar" :style="barStyle">
-          <span ref="video-progres-bar"></span>
+      <div class="vk-video-controls" v-if="!controls">
+        <div class="vk-video-progress" ref='video-progres'>
+          <div class="vk-video-progress-bar" :style="barStyle">
+            <span ref="video-progres-bar"></span>
+          </div>
         </div>
       </div>
+      <slot></slot>
+    </div>
+    <div v-else>
+      <video :height="height" :poster="coverUrl" :width="width" :autoplay="autoplay" ref="jsvideo" :loop="loop" custom-cache="false" preload="none" :src="videoUrl" :controls="controls" webkit-playsinline="true" x-webkit-airplay="true"></video>
     </div>
   </div>
 </template>
@@ -23,6 +29,18 @@
 export default {
   name: 'videoplayer',
   props: {
+    fullScreen: {
+      type: Boolean,
+      default: true
+    },
+    height: {
+      type: String,
+      default: '200px'
+    },
+    width: {
+      type: String,
+      default: 'auto'
+    },
     coverUrl: {
       type: String,
       default: 'https://img.vipkidstatic.com/prt/image/tools/upload/gJXZOOBM6NlrD.png'
@@ -65,6 +83,9 @@ export default {
     let video = this.$refs.jsvideo
     let progres = this.$refs['video-progres'] // 外
     let bar = this.$refs['video-progres-bar'] // 里
+    video.addEventListener('canplay', () => {
+      this.$emit('canplay')
+    })
     video.addEventListener('loadstart', () => {
       this.$emit('loadstart')
       this.videoTime = 0

@@ -1,7 +1,7 @@
 <template>
   <div class="vk-stepper">
     <button @touchstart="onTouchStart('minus')" @touchend="onTouchEnd" :style="buttonStyleObj" :class="buttonClassObj.concat('vk-stepper__minus')" :disabled="disabled || disable_minus">-</button>
-    <input :style="inputStyleObj" class="vk-stepper__input" type="text" v-model="value" :disabled="disabled || disable_input" :name="name" @change="handleInputChange"/>
+    <input @input="handleInputChange($event.target.value)" :style="inputStyleObj" class="vk-stepper__input" type="text" v-model="vModel" :disabled="disabled || disable_input"/>
     <button @touchstart="onTouchStart('plus')" @touchend="onTouchEnd" :style="buttonStyleObj" :class="buttonClassObj.concat('vk-stepper__plus')" :disabled="disabled || disable_plus">+</button>
   </div>
 </template>
@@ -69,7 +69,12 @@ export default {
     longPress: {
       type: Boolean,
       default: false
-    }
+    },
+    beforeChange: Function
+  },
+  model: {
+      prop: "vModel",
+      event: "change"
   },
   data() {
     return {
@@ -103,6 +108,11 @@ export default {
       e.preventDefault()
     })
   },
+  watch: {
+    // vModel: function () {
+    //   this.vModel = this.vModel.toFixed(Number(this.decimalLength))
+    // }
+  },
   computed: {
     buttonClassObj: function() {
       return [
@@ -110,9 +120,12 @@ export default {
         {'vk-stepper__button': true}
       ]
     },
-    getListeners: function() {
-      return createListeners()
-    }
+    // getListeners: function() {
+    //   return createListeners()
+    // },
+    // getVModel: function() {
+    //   return this.vModel.toFixed(Number(this.decimalLength))
+    // }
   },
   methods: {
     longPressStep() {
@@ -129,10 +142,12 @@ export default {
         const that = this
         this.longPressTimer = setTimeout(() => {
           that.isLongPress = true;
-          this.type = type
-          that.onChange();
+          // this.type = type
+          that.onChange(type);
           that.longPressStep();
         }, LONG_PRESS_START_TIME);
+      } else {
+        this.onChange(type)
       }
     },
     onTouchEnd(event) {
@@ -154,15 +169,41 @@ export default {
     stopPropagation(event) {
       event.stopPropagation();
     },
-    onChange() {
-      if(this.type==='minus') {
-        this.handleMinus()
-      } else {
-        this.handlePlus()
+    onChange(type) {
+      if (
+        (type === 'plus' && this.disablePlus) ||
+        (type === 'minus' && this.disableMinus)
+      ) {
+        this.$emit('overlimit', type);
+        return;
       }
+      if (this.beforeChange) {
+        const that = this
+        this.callInterceptor({
+          args: [that.value],
+          interceptor: that.beforeChange,
+          done: ()=> {
+            if(type==='minus') {
+              that.handleMinus()
+            } else {
+              that.handlePlus()
+            }
+          },
+        });
+      } else {
+        if(type==='minus') {
+          this.handleMinus()
+        } else {
+          this.handlePlus()
+        }
+      }
+      this.$nextTick(function () {
+        this.$emit(type)
+      })
     },
     handleMinus() {
-      this.value = Math.max(+this.value - +this.step, this.min).toFixed(Number(this.decimalLength))
+      this.value = Math.max(+this.vModel - +this.step, this.min).toFixed(Number(this.decimalLength))
+      this.$emit('change', this.value)
       if (!this.disable_minus && +this.value === +this.min) {
         this.disable_minus = true
       }
@@ -171,7 +212,8 @@ export default {
       }
     },
     handlePlus(){
-      this.value = Math.min(+this.value + +this.step, this.max).toFixed(Number(this.decimalLength))
+      this.value = Math.min(+this.vModel + +this.step, this.max).toFixed(Number(this.decimalLength))
+      this.$emit('change', this.value)
       if (!this.disable_plus && +this.value === +this.max) {
         this.disable_plus = true
       }
@@ -179,9 +221,43 @@ export default {
         this.disable_minus = false
       }
     },
-    handleInputChange(event) {
-      this.value = (+this.value).toFixed(Number(this.decimalLength))
-      this.$emit('change', event)
+    handleInputChange(value) {
+      if (value > this.max) {
+        this.vModel = this.max
+      } else if (value < this.min) {
+        this.vModel = this.min
+      } else {
+        this.vModel = (+this.vModel).toFixed(Number(this.decimalLength))
+      }
+      this.$emit('change', this.vModel)
+    },
+    callInterceptor(options) {
+      const { interceptor, args, done, canceled } = options;
+
+      if (interceptor) {
+        const returnVal = interceptor.apply(null, args || []);
+
+        if (this.isPromise(returnVal)) {
+          returnVal
+            .then((value) => {
+              if (value) {
+                done();
+              } else if (canceled) {
+                canceled();
+              }
+            })
+            .catch();
+        } else if (returnVal) {
+          done();
+        } else if (canceled) {
+          canceled();
+        }
+      } else {
+        done();
+      }
+    },
+    isPromise(val){
+      return val !== null && typeof val === 'object' && typeof val.then === 'function' && typeof val.catch === 'function';
     }
   },
 };

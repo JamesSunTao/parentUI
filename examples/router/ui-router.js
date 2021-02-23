@@ -108,6 +108,9 @@ export default [
     path: '/field',
     name: 'field',
     component: resolve => require(['../components/field.vue'], resolve),
-  },
-  
+  },{
+    path: '/videoplayer',
+    name: 'videoplayer',
+    component: resolve => require(['../components/videoplayer.vue'], resolve),
+  }
 ]

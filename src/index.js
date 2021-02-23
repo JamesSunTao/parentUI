@@ -28,9 +28,7 @@ import list from '@/components/list'
 import pullRefresh from '@/components/pullRefresh'
 import imagePreview from '@/components/image-preview'
 
-// 报告类组件
-import reportHeadImage from '@/components/reportComponents/report/report-head-image'
-import reportThemes from '@/components/reportComponents/themes/theme.vue'
+import videoplayer from '@/components/videoplayer'
 const components = {
   fadeupMenu,
   headerbar,
@@ -43,15 +41,12 @@ const components = {
   popover,
   imageView,
   tabs,
-  reportHeadImage,
   search,
   badge,
   rate,
   vbutton,
   nodata,
   list,
-  reportHeadImage,
-  reportThemes,
   parentuiRow,
   parentuiCol,
   picker,
@@ -59,7 +54,8 @@ const components = {
   autoplay,
   scrollNumber,
   imagePreview,
-  field
+  field,
+  videoplayer
 }
 const prototypes = {
   dialog,

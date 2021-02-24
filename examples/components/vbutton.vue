@@ -37,6 +37,10 @@
       <h2>loading</h2>
       <vbutton loading loading-type='spinner' loading-text='加载中...' type="primary"></vbutton>
     </div>
+    <div class="button-demo-block">
+      <h2>自定义color</h2>
+      <vbutton type="primary" color="#333"></vbutton>
+    </div>
   </div>
 </template>
 

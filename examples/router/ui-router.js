@@ -112,5 +112,9 @@ export default [
     path: '/videoplayer',
     name: 'videoplayer',
     component: resolve => require(['../components/videoplayer.vue'], resolve),
+  }, {
+    path: '/stepper',
+    name: 'stepper',
+    component: resolve => require(['../components/stepper.vue'], resolve),
   }
 ]

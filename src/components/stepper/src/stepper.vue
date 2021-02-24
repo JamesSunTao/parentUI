@@ -1,7 +1,7 @@
 <template>
-  <div class="vk-stepper">
+  <div ref="stepper" class="vk-stepper">
     <button @touchstart="onTouchStart('minus')" @touchend="onTouchEnd" :style="buttonStyleObj" :class="buttonClassObj.concat('vk-stepper__minus')" :disabled="disabled || disable_minus">-</button>
-    <input @input="handleInputChange($event.target.value)" :style="inputStyleObj" class="vk-stepper__input" type="text" v-model="vModel" :disabled="disabled || disable_input"/>
+    <input @blur="inputBlur" @focus="inputFocus" ref="input" @input="handleInputChange($event.target.value)" :style="inputStyleObj" :class="inputClassObj" type="number" :value="value" :disabled="disabled || disable_input"/>
     <button @touchstart="onTouchStart('plus')" @touchend="onTouchEnd" :style="buttonStyleObj" :class="buttonClassObj.concat('vk-stepper__plus')" :disabled="disabled || disable_plus">+</button>
   </div>
 </template>
@@ -10,8 +10,12 @@ const LONG_PRESS_INTERVAL = 200
 const LONG_PRESS_START_TIME = 600
 export default {
   name: "stepper",
+  model: {
+    prop: "sonModel",
+    event: "change"
+  },
   props: {
-    vModel: {
+    sonModel: {
       type: Number|String,
     },
     min: {
@@ -44,7 +48,7 @@ export default {
     },
     decimalLength: {
       type: Number|String,
-      default: 1
+      default: 0
     },
     theme: {
       type: String,
@@ -72,10 +76,6 @@ export default {
     },
     beforeChange: Function
   },
-  model: {
-      prop: "vModel",
-      event: "change"
-  },
   data() {
     return {
       inputStyleObj: {
@@ -86,12 +86,10 @@ export default {
         width: Number(this.buttonSize) + 'px',
         height: Number(this.buttonSize) + 'px'
       },
-      value: (this.vModel || this.defaultValue).toFixed(Number(this.decimalLength)),
+      value: Number(this.bigorSmall(this.sonModel || this.defaultValue, this.min, this.max) <1 ? this.min: this.bigorSmall(this.sonModel || this.defaultValue, this.min, this.max)>1?this.max: this.sonModel || this.defaultValue).toFixed(Number(this.decimalLength)),
       disable_minus: this.disableMinus,
       disable_plus: this.disablePlus,
       disable_input: this.disableInput,
-      // timer: null,
-      // timer2: null,
       isLongPress: false,
       type: '',
       longPressTimer: null
@@ -104,14 +102,25 @@ export default {
     if (!this.disablePlus && this.max <= this.value) {
       this.disable_plus = true
     }
-    window.addEventListener('contextmenu', function (e) {
+    this.$refs.stepper.addEventListener('contextmenu', function (e) {
       e.preventDefault()
     })
   },
   watch: {
-    // vModel: function () {
-    //   this.vModel = this.vModel.toFixed(Number(this.decimalLength))
-    // }
+    sonModel: function () {
+      const res = this.bigorSmall(+this.sonModel, this.min, this.max)
+      if ( res === 1) {
+        this.value = Number(this.sonModel).toFixed(Number(this.decimalLength))
+        if (!this.disable_plus && +this.value >= +this.max) {
+          this.disable_plus = true
+        }
+        if (!this.disable_minus && +this.value <= +this.min) {
+          this.disable_minus = true
+        }
+      } else {
+        res > 1 ? this.value = this.max : this.value = this.min
+      }
+    }
   },
   computed: {
     buttonClassObj: function() {
@@ -120,19 +129,28 @@ export default {
         {'vk-stepper__button': true}
       ]
     },
-    // getListeners: function() {
-    //   return createListeners()
-    // },
-    // getVModel: function() {
-    //   return this.vModel.toFixed(Number(this.decimalLength))
-    // }
+    inputClassObj: function() {
+      return [
+        'vk-stepper__input__' + this.theme,
+        {'vk-stepper__input': true}
+      ]
+    },
   },
   methods: {
-    longPressStep() {
+    bigorSmall(num, min, max) {
+      if (+num < min) {
+        return 0
+      } else if (+num > max) {
+        return 2
+      } else {
+        return 1
+      }
+    },
+    longPressStep(type) {
       const that = this
       this.longPressTimer = setTimeout(() => {
-        that.onChange();
-        that.longPressStep();
+        that.onChange(type);
+        that.longPressStep(type);
       }, LONG_PRESS_INTERVAL);
     },
     onTouchStart(type){
@@ -144,7 +162,7 @@ export default {
           that.isLongPress = true;
           // this.type = type
           that.onChange(type);
-          that.longPressStep();
+          that.longPressStep(type);
         }, LONG_PRESS_START_TIME);
       } else {
         this.onChange(type)
@@ -171,8 +189,8 @@ export default {
     },
     onChange(type) {
       if (
-        (type === 'plus' && this.disablePlus) ||
-        (type === 'minus' && this.disableMinus)
+        (type === 'plus' && (this.disabled || this.disablePlus)) ||
+        (type === 'minus' && (this.disabled || this.disableMinus))
       ) {
         this.$emit('overlimit', type);
         return;
@@ -202,7 +220,7 @@ export default {
       })
     },
     handleMinus() {
-      this.value = Math.max(+this.vModel - +this.step, this.min).toFixed(Number(this.decimalLength))
+      this.value = Math.max(+this.value - +this.step, this.min).toFixed(Number(this.decimalLength))
       this.$emit('change', this.value)
       if (!this.disable_minus && +this.value === +this.min) {
         this.disable_minus = true
@@ -212,7 +230,7 @@ export default {
       }
     },
     handlePlus(){
-      this.value = Math.min(+this.vModel + +this.step, this.max).toFixed(Number(this.decimalLength))
+      this.value = Math.min(+this.value + +this.step, this.max).toFixed(Number(this.decimalLength))
       this.$emit('change', this.value)
       if (!this.disable_plus && +this.value === +this.max) {
         this.disable_plus = true
@@ -222,14 +240,37 @@ export default {
       }
     },
     handleInputChange(value) {
-      if (value > this.max) {
-        this.vModel = this.max
-      } else if (value < this.min) {
-        this.vModel = this.min
-      } else {
-        this.vModel = (+this.vModel).toFixed(Number(this.decimalLength))
+      if (!value && isNaN(+value)) return
+    },
+    inputBlur(event) {
+      this.$emit('blur', event)
+      const check = this.$refs.input.value
+      const tag = this.bigorSmall(this.$refs.input.value, this.min, this.max)
+      switch(tag) {
+        case 0:
+          check = this.min
+          break
+        case 2:
+          check = this.max
+          break
       }
-      this.$emit('change', this.vModel)
+      this.value = Number(check).toFixed(this.decimalLength)
+      // this.value = this.bigorSmall(this.$refs.input.value, this.min, this.max) && Number(this.$refs.input.value).toFixed(Number(this.decimalLength)) || this.min
+      if (!this.disable_plus && +this.value >= +this.max) {
+        this.disable_plus = true
+        if (!this.disableMinus && this.disable_minus) {
+          this.disable_minus = false
+        }
+      } else if (!this.disable_minus && +this.value <= +this.min) {
+        this.disable_minus = true
+        if (!this.disablePlus && this.disable_plus) {
+          this.disable_plus = false
+        }
+      }
+      this.$emit('change', this.value)
+    },
+    inputFocus(event) {
+      this.$emit('focus', event)
     },
     callInterceptor(options) {
       const { interceptor, args, done, canceled } = options;
@@ -283,4 +324,7 @@ export default {
     user-select none
     &__round
       border-radius 50%
+  .vk-stepper__input
+    &__round
+      background-color transparent
 </style>

@@ -8,6 +8,7 @@
         'vk-button__plain': plain,
         'vk-button__disabled': disabled || loading,
         'vk-button__weak': weak,
+        'vk-button__color': color
       },
     ]"
     :style="getStyle()"
@@ -106,6 +107,9 @@ export default {
     transform: translate(-50%, -50%)
     opacity: 0
     content: ' '
+  &__color
+    &:active::before
+      opacity: 0.1;
   &__primary
     color: #ffffff
     background-color: $vk-main-color
